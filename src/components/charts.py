@@ -17,6 +17,7 @@ def display_churn_distribution(chart_key):
     data = get_churn_count() 
     custom_colors = {'Yes': '#fc4903', 'No': '#03fc94'}
     st.write("")
+    st.write("")
     st.subheader("Current Customer Churn Distribution:")
     fig = px.bar(data, x='churn', y='count', color='churn', color_discrete_map=custom_colors)
     st.plotly_chart(fig, use_container_width=True, key=chart_key)
