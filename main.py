@@ -1,9 +1,10 @@
 import streamlit as st
+import uuid 
 
 
 from src.pages.home import home_intro
 from src.data_processing.customer_data_access import get_churn_count
-
+from src.components.charts import display_churn_distribution
 
 
 # Navigation section:
@@ -17,5 +18,22 @@ st.sidebar.markdown("")
 # 1. Home Page:
 if page == "🏠 Home":
     home_intro()
+    st.write("")
+    st.write("")
+    st.subheader("Current Customer Count:")
     test = get_churn_count()
     st.write(test)
+
+    graph_placeholder = st.empty()
+    chart_key = f"chart_{uuid.uuid4()}"
+
+    # Display the bar chart:
+    with graph_placeholder.container():
+        display_churn_distribution(chart_key=chart_key)
+
+
+    # To update the chart if new data gets added to the customer table in the DB:
+    if st.button("Update Graph"):
+        chart_key = f"chart_{uuid.uuid4()}"
+        with graph_placeholder.container():
+            display_churn_distribution(chart_key=chart_key)
