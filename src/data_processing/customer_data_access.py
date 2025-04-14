@@ -1,7 +1,7 @@
 from src.data_processing.database import execute_query
 
 
-def get_churn_count():
+def get_customer_dist_count():
     """
     Get the current churn count from the database.
     """
@@ -23,3 +23,14 @@ def load_all_data():
     return result
 
 
+
+
+def get_churn_count():
+    """
+    Get the total number of customers who will churn.
+    """
+    
+    query = "SELECT COUNT(*) FROM customer WHERE churn = 'Yes';"
+    result = execute_query(query=query, return_df=True)
+    value =  result.iloc[0][0]
+    return value
