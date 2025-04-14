@@ -4,6 +4,7 @@ import uuid
 
 from src.navigation_pages.home import home_intro
 from src.navigation_pages.predict import predict
+from src.navigation_pages.explain import explain
 from src.data_processing.customer_data_access import get_customer_dist_count
 from src.components.charts import display_churn_distribution
 
@@ -45,4 +46,8 @@ if page == "🏠 Home":
 # 2. Prediction Page:
 if page == "📊 Predict":
     predict()
-    
+
+
+# 3. Explain Page:
+if page == "📖 Explain":
+    explain()

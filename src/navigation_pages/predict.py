@@ -1,7 +1,7 @@
 import streamlit as st 
 import requests
 from src.components.charts import display_customer_health_dashboard
-
+from src.assets.sessions import sessions
 
 
 def predict():
@@ -68,6 +68,10 @@ def predict():
             # Send data to FastAPI for prediction
             res = requests.post(url="http://127.0.0.1:8000/predict", json=input_features)
             if res.status_code == 200:
+                 sessions.st.session_state.input_features = input_features
                  st.write("")
                  display_customer_health_dashboard(res=res, input_features=input_features)
-                 
+                 st.write("")
+                 st.write("")
+                 st.info("👉Now, you can go to '📖 Explain' page or 📑 Generate Report page for further actions for this customer from the Navigation bar.")
+                 st.write("")
