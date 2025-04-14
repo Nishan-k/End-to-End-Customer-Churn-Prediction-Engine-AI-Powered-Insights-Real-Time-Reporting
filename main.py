@@ -3,6 +3,7 @@ import uuid
 
 
 from src.navigation_pages.home import home_intro
+from src.navigation_pages.predict import predict
 from src.data_processing.customer_data_access import get_churn_count
 from src.components.charts import display_churn_distribution
 
@@ -38,3 +39,9 @@ if page == "🏠 Home":
         chart_key = f"chart_{uuid.uuid4()}"
         with graph_placeholder.container():
             display_churn_distribution(chart_key=chart_key)
+
+
+
+# 2. Prediction Page:
+if page == "📊 Predict":
+    predict()
