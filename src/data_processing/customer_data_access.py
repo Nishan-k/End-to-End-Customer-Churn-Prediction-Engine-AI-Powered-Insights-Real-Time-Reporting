@@ -10,3 +10,16 @@ def get_churn_count():
     result = execute_query(query=query, return_df=True)
 
     return result
+
+
+
+def load_all_data():
+    """
+    Load all the data from the database to train the ML model.
+    """
+    
+    query = "SELECT * FROM customer;"
+    result = execute_query(query=query, return_df=True)
+    return result
+
+
