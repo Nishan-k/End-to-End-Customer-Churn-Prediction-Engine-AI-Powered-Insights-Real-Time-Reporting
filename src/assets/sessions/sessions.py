@@ -1,7 +1,4 @@
-# import streamlit as st   
+import streamlit as st
 
-
-
-
-# if 'input_features' not in st.session_state:
-#     st.session_state.input_features = None
+def navigate_to_predict():
+    st.session_state.page_selection = "📊 Predict"
