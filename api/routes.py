@@ -1,9 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, HTTPException
 import joblib
 import pandas as pd
 from schemas import Input_features
-
-
+# from src.components.charts import create_clean_shap_dashboard
+import streamlit as st
 
 
 # Load the saved model:
@@ -30,3 +30,9 @@ def predict_churn(input_features:Input_features):
     
     except Exception as e:
         return {'error': str(e)}
+
+
+# @app.post("/explain")
+# async def explain_shap():
+#     result = create_clean_shap_dashboard(customer_data=customer_data, model=model)
+#     return result

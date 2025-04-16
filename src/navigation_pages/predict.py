@@ -1,7 +1,7 @@
 import streamlit as st 
 import requests
 from src.components.charts import display_customer_health_dashboard
-from src.assets.sessions import sessions
+
 
 
 def predict():

@@ -3,7 +3,7 @@ import joblib
 import streamlit as st
 from src.components.charts import create_clean_shap_dashboard
 
-# Load model (consider adding error handling)
+
 try:
     model = joblib.load("ml/churn_clf_model.pkl")
 except Exception as e:
@@ -15,14 +15,16 @@ def navigate_to_predict():
     
 
 def explain():
-    # Initialize with proper error handling
+    """
+    This function is responsible for displaying a SHAP chart and a table of SHAP values.
+    """
     if 'input_features' not in st.session_state:
         st.warning("Please make a prediction first on the Predict page")
         if st.button("Go to Prediction Page", on_click=navigate_to_predict):
-            return  # Exit immediately after button click
-        return  # Stop execution if no input features
+            return  
+        return  
     
-    # Safer dictionary comparison by converting to string
+    
     current_features = str(st.session_state.input_features)
     last_features = str(st.session_state.get('last_input_features', ""))
     
@@ -38,7 +40,7 @@ def explain():
             )
             result = create_clean_shap_dashboard(customer_data=customer_data, model=model)
             
-            # Update session state
+            
             st.session_state.update({
                 "shap_result": result,
                 "customer_data": customer_data,
@@ -49,13 +51,13 @@ def explain():
             st.error(f"Error generating explanation: {e}")
             return
 
-    # Safely access results
+    
     result = st.session_state.get("shap_result")
     if not result:
         st.error("No explanation results available")
         return
 
-    # Display results
+    
     st.subheader("Prediction Result")
     prediction = result["prediction"]
     probability = result["churn_probability"] * 100

@@ -251,23 +251,6 @@ def create_clean_shap_dashboard(customer_data, model, background_data=None):
 
     plt.subplots_adjust(top=0.94)  # Adjust top spacing
     
-    # # ====================== [3. RETURN RESULTS] ======================
-    # feature_impacts = []
-    # for feature, impact in zip(sorted_features, sorted_values):
-    #     value = customer_values.get(feature, "N/A")
-    #     if abs(impact) < 0.001:
-    #         explanation = f"{feature} ('{value}') has negligible impact."
-    #     elif impact > 0:
-    #         explanation = f"{feature} ('{value}') increases risk by {abs(impact):.3f}."
-    #     else:
-    #         explanation = f"{feature} ('{value}') decreases risk by {abs(impact):.3f}."
-            
-    #     feature_impacts.append({
-    #         "feature": feature,
-    #         "impact": impact,
-    #         "value": value,
-    #         "explanation": explanation
-    #     })
     
     return {
         "prediction": "Churn" if prediction == 1 else "No Churn",
