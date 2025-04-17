@@ -1,7 +1,7 @@
 import streamlit as st 
 import requests
 from src.components.charts import display_customer_health_dashboard
-
+import pandas as pd
 
 
 def predict():
@@ -18,6 +18,11 @@ def predict():
     
     if st.session_state.display_customer_health_dashboard:
         display_customer_health_dashboard(*st.session_state.dashboard_data)
+        st.subheader("Given Input Features:")
+        df = pd.DataFrame([st.session_state.input_features]).T.reset_index()
+        df.columns = ['Feature Name', 'Values']
+        st.table(df)
+        
 
         if st.button("Make New Prediction"):
             st.session_state.display_customer_health_dashboard = False
@@ -88,6 +93,11 @@ def predict():
                     st.session_state.input_features = input_features
                     st.write("")
                     display_customer_health_dashboard(res=res, input_features=input_features)
+                    st.write("")
+                    st.subheader("Given Input Features:")
+                    df = pd.DataFrame([st.session_state.input_features]).T.reset_index()
+                    df.columns = ['Feature Name', 'Values']
+                    st.table(df)                    
                     st.session_state.display_customer_health_dashboard = True
                     st.session_state.dashboard_data = (res, input_features)
                     st.write("")

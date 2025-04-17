@@ -25,7 +25,7 @@ def display_churn_distribution(data, chart_key):
     This function is responsible fetching the data from database and displaying the bar chart for churn and non-churn.
     """
     data = data
-    custom_colors = {'Yes': '#fc4903', 'No': '#03fc94'}
+    custom_colors = {'Yes': '#b11346', 'No': '#0e7337'}
     st.write("")
     st.write("")
     st.subheader("Current Customer Churn Distribution:")
@@ -190,7 +190,7 @@ def create_clean_shap_dashboard(customer_data, model, background_data=None):
     # Visual parameters
     bar_height = 0.7
     y_pos = np.arange(len(sorted_features))
-    colors = ['#FF4560' if x < 0 else '#008FFB' for x in sorted_values]
+    colors = ['#0e7337' if x < 0 else '#b11346' for x in sorted_values]
     
     # Create clean bars without values
     ax1.barh(y_pos, sorted_values, height=bar_height, color=colors)
@@ -211,7 +211,7 @@ def create_clean_shap_dashboard(customer_data, model, background_data=None):
                  for f in sorted_features]
     
     # Create color map for table cells
-    cmap = LinearSegmentedColormap.from_list('impact_cmap', ["#FF4560", "white", "#008FFB"])
+    cmap = LinearSegmentedColormap.from_list('impact_cmap', ["#0e7337", "white", "#b11346"])
     max_impact = max(abs(v) for v in sorted_values)
     norm_values = [v/max_impact for v in sorted_values]
     

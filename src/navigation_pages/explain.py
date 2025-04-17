@@ -19,7 +19,7 @@ def explain():
     This function is responsible for displaying a SHAP chart and a table of SHAP values.
     """
     if 'input_features' not in st.session_state:
-        st.warning("Please make a prediction first on the Predict page")
+        st.warning("⚠️ No prediction data available. Please make a prediction first.")
         if st.button("Go to Prediction Page", on_click=navigate_to_predict):
             return  
         return  
@@ -59,11 +59,14 @@ def explain():
     st.subheader("Prediction Result")
     prediction = result["prediction"]
     probability = result["churn_probability"] * 100
+    st.session_state.pred_prob = probability
 
     if prediction == "Churn":
         st.error(f"Customer is predicted to churn with {probability:.1f}% probability")
+        st.session_state.churn_prob = probability
     else:
         st.success(f"Customer is predicted to stay with {(100-probability):.1f}% probability")
+        st.session_state.non_churn_prob = 100 - probability
     
     st.subheader("Feature Impact Analysis")
     st.pyplot(result["plot"])
