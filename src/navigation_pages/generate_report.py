@@ -29,7 +29,6 @@ def report_generation():
     shap_values = st.session_state.shap_values # session from explain.py
     predictions = st.session_state.predictions # session from explain.py
     customer_data = st.session_state.input_features # session from predict.py
-    prediction_prob = st.session_state.pred_prob
     top_5_features = dict(sorted(shap_values.items(), key=lambda x: abs(x[1]), reverse=True)[:5])
     
     col1, col2 = st.columns([1, 2])
@@ -38,12 +37,12 @@ def report_generation():
         st.subheader("Prediction Result")
         if predictions == "Churn":
             st.error(f"⚠️ Customer Likely to Churn")
-            pred = st.session_state.churn_prob
-            st.markdown(f"**Churn Probability:** {pred:.2f}%")
+            churn_pred = st.session_state.churn_prob
+            st.markdown(f"**Churn Probability:** {churn_pred:.2f}%")
         else:
             st.success(f"✅ Customer Likely to Stay")
-            pred = st.session_state.non_churn_prob
-            st.markdown(f"**Retention Probability:** {pred:.2f}%")
+            non_churn_pred = st.session_state.non_churn_prob
+            st.markdown(f"**Retention Probability:** {non_churn_pred:.2f}%")
     
     with col2:
         st.subheader("5 Key Factors Influencing Prediction")
@@ -97,7 +96,7 @@ def report_generation():
             get_report(shap_values=shap_values, 
                        predictions=predictions, 
                        customer_data=customer_data,
-                       prediction_prob=prediction_prob,
+                       prediction_prob=[churn_pred if predictions == "Churn" else non_churn_pred],
                        report_type=report_type,
                        audience=audience,
                        include_recommendations=include_recommendations

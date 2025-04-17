@@ -59,13 +59,13 @@ def explain():
     st.subheader("Prediction Result")
     prediction = result["prediction"]
     probability = result["churn_probability"] * 100
-    st.session_state.pred_prob = probability
+  
 
     if prediction == "Churn":
-        st.error(f"Customer is predicted to churn with {probability:.1f}% probability")
+        st.error(f"Customer is predicted to churn with {probability:.2f}% probability")
         st.session_state.churn_prob = probability
     else:
-        st.success(f"Customer is predicted to stay with {(100-probability):.1f}% probability")
+        st.success(f"Customer is predicted to stay with {(100-probability):.2f}% probability")
         st.session_state.non_churn_prob = 100 - probability
     
     st.subheader("Feature Impact Analysis")

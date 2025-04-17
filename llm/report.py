@@ -107,7 +107,7 @@ openai = OpenAI()
 #     return full_response
     
 
-def system_prompt(report_type=None, audience=None, include_recommendations=True, include_visualizations=True):
+def system_prompt(report_type=None, audience=None, include_recommendations=True):
     """
     A system prompt that tells the OpenAI on how to operate.
     """
@@ -212,18 +212,11 @@ def system_prompt(report_type=None, audience=None, include_recommendations=True,
        - Indicate implementation difficulty (easy/moderate/difficult)
     """
     
-    # Add guidance for visualization descriptions if enabled
-    if include_visualizations:
-        system_prompt += """
-    6. **Visualization Descriptions**: Include brief descriptions of what visualizations would be helpful for this analysis:
-       - Suggest 1-2 chart types that would best illustrate the key insights
-       - Describe what the visualization would show and why it would be valuable
-       - Use [CHART] tags to indicate where visualizations would be placed
-    """
+    
     
     # General style guidelines regardless of options
     system_prompt += """
-    7. **Style**:
+    6. **Style**:
        - Use clear, appropriately technical language based on the audience
        - Correctly interpret SHAP values: Positive SHAP = increases churn probability; Negative SHAP = decreases churn probability
        - Focus only on features with significant SHAP values (absolute value > 0.01)
@@ -234,7 +227,7 @@ def system_prompt(report_type=None, audience=None, include_recommendations=True,
     return system_prompt
 
 
-def user_prompt(shap_values, predictions, customer_data, prediction_prob,  report_type=None, audience=None, include_recommendations=True, include_visualizations=True):
+def user_prompt(shap_values, predictions, customer_data, prediction_prob,  report_type=None, audience=None, include_recommendations=True):
     """
     A user prompt that tells OpenAI on what and how to respond.
     """
@@ -249,11 +242,11 @@ def user_prompt(shap_values, predictions, customer_data, prediction_prob,  repor
 
     # Handle probability based on prediction to make it consistent
     if predictions == "Churn":
-        probability = prediction_prob * 100  # probability of churning
-        probability_text = f"{probability:.1f}% probability of churning"
+        probability = prediction_prob[0]  # probability of churning
+        probability_text = f"{probability:.2f}% probability of churning"
     else:
-        probability = (1 - prediction_prob) * 100  # probability of staying
-        probability_text = f"{probability:.1f}% probability of staying"
+        probability = prediction_prob[0]  # probability of staying
+        probability_text = f"{probability:.2f}% probability of staying"
     # Create a dictionary of feature impacts if receiving raw SHAP values object
     if hasattr(shap_values, "values"):
         # Handle raw SHAP values object
@@ -290,10 +283,7 @@ def user_prompt(shap_values, predictions, customer_data, prediction_prob,  repor
     else:
         user_prompt += "\nDo NOT include recommendations in this report.\n"
     
-    if include_visualizations:
-        user_prompt += "\nSuggest appropriate visualizations by including [CHART] descriptions.\n"
-    else:
-        user_prompt += "\nDo NOT include visualization suggestions.\n"
+    
     
     user_prompt += """
     Important notes for interpretation:
@@ -307,7 +297,7 @@ def user_prompt(shap_values, predictions, customer_data, prediction_prob,  repor
     return user_prompt
 
 
-def get_report(shap_values, predictions, customer_data, prediction_prob, report_type=None, audience=None, include_recommendations=True, include_visualizations=True):
+def get_report(shap_values, predictions, customer_data, prediction_prob, report_type=None, audience=None, include_recommendations=True):
     """
     A function that generates a streamed report using OpenAI's chat completions.
     """
@@ -315,7 +305,7 @@ def get_report(shap_values, predictions, customer_data, prediction_prob, report_
         report_type=report_type, 
         audience=audience, 
         include_recommendations=include_recommendations, 
-        include_visualizations=include_visualizations
+        
     )
     
     user = user_prompt(
@@ -325,8 +315,7 @@ def get_report(shap_values, predictions, customer_data, prediction_prob, report_
         prediction_prob=prediction_prob,
         report_type=report_type,
         audience=audience, 
-        include_recommendations=include_recommendations, 
-        include_visualizations=include_visualizations
+        include_recommendations=include_recommendations
     )
     
     input_data = [

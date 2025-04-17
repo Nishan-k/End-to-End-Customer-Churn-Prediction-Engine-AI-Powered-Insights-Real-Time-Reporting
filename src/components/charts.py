@@ -207,7 +207,7 @@ def create_clean_shap_dashboard(customer_data, model, background_data=None):
     ax2.axis('off')
     
     # Prepare table data (now includes SHAP values since they're not on chart)
-    table_data = [[f, customer_values.get(f, "N/A"), f'{aggregated_shap[f]:.4f}'] 
+    table_data = [[f, customer_values.get(f, "N/A"), f'{aggregated_shap[f]:.2f}'] 
                  for f in sorted_features]
     
     # Create color map for table cells
@@ -242,7 +242,7 @@ def create_clean_shap_dashboard(customer_data, model, background_data=None):
     fig.suptitle(
     f"Customer Churn Analysis "
     f"Prediction: {'Churn' if prediction == 1 else 'No Churn'} "
-    f"(Probability: {(prediction_proba if prediction == 1 else (1 - prediction_proba)) * 100:.0f}% chance the customer will "
+    f"(Probability: {(prediction_proba if prediction == 1 else (1 - prediction_proba)) * 100:.2f}% chance the customer will "
     f"{'leave' if prediction == 1 else 'stay'}) \n",
     fontsize=16, y=0.98
 )
