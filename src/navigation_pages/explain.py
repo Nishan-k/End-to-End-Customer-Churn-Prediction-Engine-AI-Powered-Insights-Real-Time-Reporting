@@ -70,19 +70,8 @@ def explain():
     
     st.session_state.update({
         "shap_values" : result["agg_shap"],
-        "predictions": prediction,
-        "customer_data": result['customer_data']
+        "predictions": prediction
     })
-
-
-    # test = result["agg_shap"]
-    # st.write(test)
-    # st.write(prediction)
-    # st.write(probability)
-    # pre_teset = (probability if prediction == "Churn" else (100 - probability))
-    # st.write(pre_teset)
-    # customer = result['customer_data']
-    # st.write(customer)
 
 
 
