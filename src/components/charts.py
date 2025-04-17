@@ -256,7 +256,8 @@ def create_clean_shap_dashboard(customer_data, model, background_data=None):
         "prediction": "Churn" if prediction == 1 else "No Churn",
         "churn_probability": float(prediction_proba),
         "plot": fig,
-        # "feature_impacts": feature_impacts,
         "base_value": float(base_value),
-        "shap_values": shap_values
+        "shap_values": shap_values,
+        "agg_shap": aggregated_shap,
+        "customer_data" : customer_df
     }

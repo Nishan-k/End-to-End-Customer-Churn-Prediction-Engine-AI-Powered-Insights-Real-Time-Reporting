@@ -39,8 +39,6 @@ def explain():
                 {k: [v] for k, v in st.session_state.input_features.items()}
             )
             result = create_clean_shap_dashboard(customer_data=customer_data, model=model)
-            
-            
             st.session_state.update({
                 "shap_result": result,
                 "customer_data": customer_data,
@@ -70,6 +68,25 @@ def explain():
     st.subheader("Feature Impact Analysis")
     st.pyplot(result["plot"])
     
+    st.session_state.update({
+        "shap_values" : result["agg_shap"],
+        "predictions": prediction,
+        "customer_data": result['customer_data']
+    })
+
+
+    # test = result["agg_shap"]
+    # st.write(test)
+    # st.write(prediction)
+    # st.write(probability)
+    # pre_teset = (probability if prediction == "Churn" else (100 - probability))
+    # st.write(pre_teset)
+    # customer = result['customer_data']
+    # st.write(customer)
+
+
+
+
     st.info("""
     👉 Now you can:
     - View detailed explanations on this page
