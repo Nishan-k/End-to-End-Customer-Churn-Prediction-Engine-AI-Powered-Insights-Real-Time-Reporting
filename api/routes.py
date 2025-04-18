@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request, HTTPException
 import joblib
 import pandas as pd
-from schemas import Input_features
+from api.schemas import Input_features
 # from src.components.charts import create_clean_shap_dashboard
 import streamlit as st
 
