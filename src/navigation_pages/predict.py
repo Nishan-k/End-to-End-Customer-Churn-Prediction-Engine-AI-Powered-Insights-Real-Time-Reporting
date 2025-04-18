@@ -7,7 +7,6 @@ import pandas as pd
 
 def reset_prediction():
     keys_to_reset = [
-        "input_features", 
         "shap_values",
         "predictions",
         "report_content",
