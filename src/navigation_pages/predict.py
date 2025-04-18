@@ -55,7 +55,11 @@ def predict():
         if st.button("Make New Prediction"):
             st.session_state.display_customer_health_dashboard = False
             st.session_state.dashboard_data = False
-            del st.session_state.input_features
+
+            sessions = ["input_features", "shap_values", "predictions", "customer_data"]
+            for session in sessions:
+                del st.session_state[session]
+
             st.rerun()
 
 
