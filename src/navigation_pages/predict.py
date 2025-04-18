@@ -12,15 +12,13 @@ def reset_prediction():
         "report_content",
         "pdf_path",
         "churn_prob",
-        "non_churn_prob"
+        "non_churn_prob",
+        "display_customer_health_dashboard"
     ]
     for key in keys_to_reset:
         if key in st.session_state:
             del st.session_state[key]
     
-    # Reset the dashboard display flag
-    st.session_state.display_customer_health_dashboard = False
-    st.session_state.dashboard_data = None
 
     
 
