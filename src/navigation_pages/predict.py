@@ -86,9 +86,7 @@ def predict():
                     "total_charges" : round(total_charges, 2)
                 }
 
-               
-
-
+    
                 # Send data to FastAPI for prediction
                 res = requests.post(url="https://end-to-end-customer-churn-prediction-8ftp.onrender.com/predict", json=input_features)
                 if res.status_code == 200:
