@@ -1,5 +1,5 @@
 import plotly.express as px
-from src.data_processing.customer_data_access import get_churn_count, load_all_data
+from src.data_processing.customer_data_access import  load_all_data, get_churn_count
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -7,8 +7,18 @@ import shap
 from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
 
-total_churn_count = get_churn_count()
-total_customers =  len(load_all_data())
+
+# Load the data (DB queries are replaced by a CSV file:):
+data = pd.read_csv("data/churn_distribution.csv")
+churn_count = data[data["churn"] == "Yes"]["count"].values
+
+total_churn_count = churn_count[0]
+# total_churn_count = get_churn_count()
+
+
+total_customers =  data["count"].sum()
+# total_customers = len(load_all_data())
+
 baseline_churn_rate = (total_churn_count / total_customers) * 100
 
 
