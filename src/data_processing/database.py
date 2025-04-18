@@ -2,18 +2,8 @@ import pandas as pd
 import psycopg2
 from psycopg2 import sql
 from config import DB_CONFIG
-import os
 import streamlit as st
-from dotenv import load_dotenv
 
-
-DB_CONFIG = {
-    'host': os.getenv('DB_HOST', st.secrets.get("DB_HOST", "localhost")),
-    'database': os.getenv('DB_NAME', st.secrets.get("DB_NAME")),
-    'user': os.getenv('DB_USER', st.secrets.get("DB_USER")),
-    'password': os.getenv('DB_PASSWORD', st.secrets.get("DB_PASSWORD")),
-    'port': os.getenv('DB_PORT', st.secrets.get("DB_PORT", "5432"))
-    }
 
 def execute_query(
     query: str, 

@@ -9,6 +9,6 @@ DB_CONFIG = {
     'user': os.getenv("user"),
     'password': os.getenv("password"),
     'host': os.getenv("host"),
-    'port': os.getenv("port", "5432")
+    'port': os.getenv("port")
 }
 
