@@ -35,3 +35,5 @@ def get_churn_count():
     )
     return result.iloc[0, 0] if not result.empty else 0
     
+
+

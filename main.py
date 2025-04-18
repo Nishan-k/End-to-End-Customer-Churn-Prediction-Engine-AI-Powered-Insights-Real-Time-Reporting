@@ -1,6 +1,6 @@
 import streamlit as st
 import uuid 
-
+import pandas as pd
 
 from src.navigation_pages.home import home_intro
 from src.navigation_pages.predict import predict
@@ -13,7 +13,8 @@ from src.components.charts import display_churn_distribution
 
 
 
-
+# Load the data:
+data = pd.read_csv("data/churn_distribution.csv")
 
 # Navigation section:
 page = st.sidebar.selectbox("Navigation Menu", ["🏠 Home", "📊 Predict", 
@@ -29,7 +30,7 @@ if page == "🏠 Home":
     st.write("")
     st.write("")
     st.subheader("Current Customer Churn Situation:")
-    data = get_customer_dist_count()
+    # data = get_customer_dist_count()  # This is pulled from the datbase but will be used in the future, for now just static CSV file.
     table = data.rename(columns={"churn": "Churn", "count": "Total Churn Count"})
     st.write(table)
 
@@ -61,3 +62,8 @@ if page == "📖 Explain":
 
 if page == "📑 Generate Report":
     report_generation()
+
+if page == "ℹ️ About":
+    st.write("""A database was initially used for data ingestion. 
+             For deployment, I switched to a static CSV for simplicity. 
+             A database version with prediction logging and retraining functionality is in progress.""")
