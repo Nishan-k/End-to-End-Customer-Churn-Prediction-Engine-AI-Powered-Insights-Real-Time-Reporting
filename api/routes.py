@@ -7,7 +7,7 @@ import streamlit as st
 
 
 # Load the saved model:
-model = joblib.load("../ml/churn_clf_model.pkl")
+model = joblib.load("ml/churn_clf_model.pkl")
 
 
 
