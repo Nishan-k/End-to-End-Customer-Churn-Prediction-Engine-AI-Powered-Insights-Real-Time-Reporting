@@ -5,15 +5,18 @@ import pandas as pd
 
 
 def reset_prediction():
-    """Reset all prediction-related session state variables"""
+    """
+    Reset all prediction-related session state variables
+    """
+
+    st.session_state.display_customer_health_dashboard = False
     keys_to_reset = [
         "shap_values",
         "predictions",
         "report_content",
         "pdf_path",
         "churn_prob",
-        "non_churn_prob",
-        "display_customer_health_dashboard"
+        "non_churn_prob"
     ]
     for key in keys_to_reset:
         if key in st.session_state:
@@ -49,24 +52,6 @@ def predict():
         if st.button("Make New Prediction"):
             reset_prediction()
             
-            
-            #  current_page = st.session_state.nav_location = "📊 Predict"
-            #  keys_to_reset = [
-            #         "input_features", 
-            #         "shap_values",
-            #         "predictions",
-            #         "report_content",
-            #         "pdf_path",
-            #         "churn_prob",
-            #         "non_churn_prob"
-            #             ]
-            #  for key in keys_to_reset:
-            #     if key in st.session_state:
-            #         del st.session_state[key]
-            
-            #  st.session_state.page_selection = current_page
-            #  st.rerun()
-
 
    
     if not st.session_state.display_customer_health_dashboard:
