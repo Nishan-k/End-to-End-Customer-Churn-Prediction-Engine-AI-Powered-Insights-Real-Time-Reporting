@@ -20,17 +20,17 @@ def execute_query(query: str, return_df: bool = False, return_column_names: bool
         if cursor is None or cursor.empty:
             st.warning("Couldn't connect to database - using demo data")
             return 100 
+        else:
+            if return_df:
+                result = pd.DataFrame(cursor.fetchall(), columns=[desc[0] for desc in cursor.description])
+                result = result.reset_index(drop=True)
+                return result
+            
+            rows = cursor.fetchall()
+            if not return_column_names:
+                return rows
 
-        if return_df:
-            result = pd.DataFrame(cursor.fetchall(), columns=[desc[0] for desc in cursor.description])
-            result = result.reset_index(drop=True)
-            return result
-        
-        rows = cursor.fetchall()
-        if not return_column_names:
-            return rows
-
-        return rows, [desc[0] for desc in cursor.description]
+            return rows, [desc[0] for desc in cursor.description]
         
 
     except psycopg2.Error as e:
