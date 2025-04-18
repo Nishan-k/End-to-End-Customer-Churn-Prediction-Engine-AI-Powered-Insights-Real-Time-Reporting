@@ -4,6 +4,28 @@ from src.components.charts import display_customer_health_dashboard
 import pandas as pd
 
 
+
+def reset_prediction():
+    keys_to_reset = [
+        "input_features", 
+        "shap_values",
+        "predictions",
+        "report_content",
+        "pdf_path",
+        "churn_prob",
+        "non_churn_prob"
+    ]
+    for key in keys_to_reset:
+        if key in st.session_state:
+            del st.session_state[key]
+
+    
+    current_page = st.session_state.nav_location = "📊 Predict"
+    st.session_state.page_selection = current_page
+    st.rerun()
+
+
+
 def predict():
     """
     Takes the user input and makes a POST request via FastAPI for model prediction:
@@ -24,23 +46,24 @@ def predict():
         st.table(df)
         
 
-        if st.button("Make New Prediction"):
-             current_page = st.session_state.nav_location = "📊 Predict"
-             keys_to_reset = [
-                    "input_features", 
-                    "shap_values",
-                    "predictions",
-                    "report_content",
-                    "pdf_path",
-                    "churn_prob",
-                    "non_churn_prob"
-                        ]
-             for key in keys_to_reset:
-                if key in st.session_state:
-                    del st.session_state[key]
+        if st.button("Make New Prediction", on_click=reset_prediction):
+            pass
+            #  current_page = st.session_state.nav_location = "📊 Predict"
+            #  keys_to_reset = [
+            #         "input_features", 
+            #         "shap_values",
+            #         "predictions",
+            #         "report_content",
+            #         "pdf_path",
+            #         "churn_prob",
+            #         "non_churn_prob"
+            #             ]
+            #  for key in keys_to_reset:
+            #     if key in st.session_state:
+            #         del st.session_state[key]
             
-             st.session_state.page_selection = current_page
-             st.rerun()
+            #  st.session_state.page_selection = current_page
+            #  st.rerun()
 
 
    
