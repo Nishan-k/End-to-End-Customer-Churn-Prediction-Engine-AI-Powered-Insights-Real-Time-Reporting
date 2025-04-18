@@ -4,25 +4,26 @@ from src.components.charts import display_customer_health_dashboard
 import pandas as pd
 
 
-def reset_prediction():
-    """
-    Reset all prediction-related session state variables
-    """
+# def reset_prediction():
+#     """
+#     Reset all prediction-related session state variables
+#     """
 
-    st.session_state.display_customer_health_dashboard = False
-    st.session_state.dashboard_data = False
+#     st.session_state.display_customer_health_dashboard = False
+#     st.session_state.dashboard_data = False
+  
 
-    keys_to_reset = [
-        "shap_values",
-        "predictions",
-        "report_content",
-        "pdf_path",
-        "churn_prob",
-        "non_churn_prob"
-    ]
-    for key in keys_to_reset:
-        if key in st.session_state:
-            del st.session_state[key]
+#     keys_to_reset = [
+#         "shap_values",
+#         "predictions",
+#         "report_content",
+#         "pdf_path",
+#         "churn_prob",
+#         "non_churn_prob"
+#     ]
+#     for key in keys_to_reset:
+#         if key in st.session_state:
+#             del st.session_state[key]
     
 
     
@@ -52,7 +53,11 @@ def predict():
 
    
         if st.button("Make New Prediction"):
-            reset_prediction()
+            st.session_state.display_customer_health_dashboard = False
+            st.session_state.dashboard_data = False
+            st.rerun()
+
+
             
 
    
