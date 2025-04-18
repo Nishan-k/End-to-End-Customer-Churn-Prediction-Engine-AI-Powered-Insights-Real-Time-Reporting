@@ -20,9 +20,7 @@ def reset_prediction():
             del st.session_state[key]
 
     
-    current_page = st.session_state.nav_location = "📊 Predict"
-    st.session_state.page_selection = current_page
-    st.rerun()
+
 
 
 
