@@ -47,10 +47,10 @@ def predict():
         st.table(df)
         
 
+   
         if st.button("Make New Prediction"):
-            if st.button("Make New Prediction"):
-                reset_prediction()
-                st.experimental_rerun()
+            reset_prediction()
+            st.experimental_rerun()
             
             #  current_page = st.session_state.nav_location = "📊 Predict"
             #  keys_to_reset = [
