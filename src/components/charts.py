@@ -28,7 +28,7 @@ def display_churn_distribution(data, chart_key):
     custom_colors = {'Yes': '#b11346', 'No': '#0e7337'}
     st.write("")
     st.write("")
-    st.subheader("Current Customer Churn Distribution:")
+    st.subheader("Current Customer Churn Distribution")
     fig = px.bar(data, x='churn', y='count', color='churn', color_discrete_map=custom_colors)
     st.plotly_chart(fig, use_container_width=True, key=chart_key)
     st.write("")
@@ -261,3 +261,43 @@ def create_clean_shap_dashboard(customer_data, model, background_data=None):
         "agg_shap": aggregated_shap,
         "customer_data" : customer_df
     }
+
+
+
+
+def show_shap_top_features():
+    """
+    This function takes in the number of features that the user wants to see for the SHAP and shows the table and the chart.
+    """
+    shap_values = st.session_state.shap_values # session from explain.py
+
+    st.subheader("Explore Feature Importance with SHAP")
+    n = st.number_input("Number of Features:", min_value=3, max_value=19, step=1)
+
+    # Sorting the SHAP values:
+    features_to_show = dict(sorted(shap_values.items(), key=lambda x: abs(x[1]), reverse=True)[:n])
+
+
+    st.subheader(f"{n} Key Factors Influencing Prediction")
+    features_to_show_df = pd.DataFrame([features_to_show]).T.reset_index()
+    features_to_show_df.columns = ['Feature Name', 'Values']
+    st.table(features_to_show_df)
+
+
+    st.write("")
+    features_to_show_df['Color'] = ['Descreases churn risk ↓' if v < 0 else 'Increases churn risk ↑' for v in features_to_show_df['Values']]
+    # Plot with Plotly
+    fig = px.bar(
+        features_to_show_df,
+        x='Feature Name',
+        y='Values',
+        color='Color',
+        color_discrete_map={
+            'Increases churn risk ↑': '#b11346',
+            'Descreases churn risk ↓': '#0e7337'
+        },
+        title=f'Top {n} Most Impactful Features by SHAP Value',
+        labels={'Color': 'Effect on Churn Risk'}
+    )
+
+    st.plotly_chart(fig, use_container_width=True)

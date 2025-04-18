@@ -1,5 +1,6 @@
 import streamlit as st  
 from llm.report import get_report
+from llm.pdf_generator import save_report_as_pdf
 import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
@@ -31,43 +32,18 @@ def report_generation():
     customer_data = st.session_state.input_features # session from predict.py
     top_5_features = dict(sorted(shap_values.items(), key=lambda x: abs(x[1]), reverse=True)[:5])
     
-    col1, col2 = st.columns([1, 2])
-    
-    with col1:
-        st.subheader("Prediction Result")
-        if predictions == "Churn":
-            st.error(f"⚠️ Customer Likely to Churn")
-            churn_pred = st.session_state.churn_prob
-            st.markdown(f"**Churn Probability:** {churn_pred:.2f}%")
-        else:
-            st.success(f"✅ Customer Likely to Stay")
-            non_churn_pred = st.session_state.non_churn_prob
-            st.markdown(f"**Retention Probability:** {non_churn_pred:.2f}%")
-    
-    with col2:
-        st.subheader("5 Key Factors Influencing Prediction")
-        top_5_features_df = pd.DataFrame([top_5_features]).T.reset_index()
-        top_5_features_df.columns = ['Feature Name', 'Values']
-        st.table(top_5_features_df)
     
     
-    
-    top_5_features_df['Color'] = ['Descreases churn risk ↓' if v < 0 else 'Increases churn risk ↑' for v in top_5_features_df['Values']]
-    # Plot with Plotly
-    fig = px.bar(
-        top_5_features_df,
-        x='Feature Name',
-        y='Values',
-        color='Color',
-        color_discrete_map={
-            'Increases churn risk ↑': '#b11346',
-            'Descreases churn risk ↓': '#0e7337'
-        },
-        title='Top 5 Most Impactful Features by SHAP Value',
-        labels={'Color': 'Effect on Churn Risk'}
-    )
-
-    st.plotly_chart(fig, use_container_width=True)
+   
+    st.subheader("Prediction Result")
+    if predictions == "Churn":
+        st.error(f"⚠️ Customer Likely to Churn")
+        churn_pred = st.session_state.churn_prob
+        st.markdown(f"**Churn Probability:** {churn_pred:.2f}%")
+    else:
+        st.success(f"✅ Customer Likely to Stay")
+        non_churn_pred = st.session_state.non_churn_prob
+        st.markdown(f"**Retention Probability:** {non_churn_pred:.2f}%")
   
     st.write("")
     
@@ -93,7 +69,7 @@ def report_generation():
 
     if st.button("Generate Report"):
         with st.spinner("Generating report..."):
-            get_report(shap_values=shap_values, 
+            response = get_report(shap_values=shap_values, 
                        predictions=predictions, 
                        customer_data=customer_data,
                        prediction_prob=[churn_pred if predictions == "Churn" else non_churn_pred],
@@ -101,5 +77,16 @@ def report_generation():
                        audience=audience,
                        include_recommendations=include_recommendations
                        ) 
+            
+        st.session_state.report_content = response
+        st.session_state.pdf_path = save_report_as_pdf(st.session_state.report_content)
+        with open(st.session_state.pdf_path, "rb") as file:
+                            st.download_button(
+                                label="📥 Download as PDF",
+                                data=file,
+                                file_name="Customer_churn_report.pdf",
+                                mime="application/pdf",
+                                key="download_pdf"
+                            )
         
 

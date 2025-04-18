@@ -1,7 +1,7 @@
 import pandas as pd
 import joblib
 import streamlit as st
-from src.components.charts import create_clean_shap_dashboard
+from src.components.charts import create_clean_shap_dashboard, show_shap_top_features
 
 
 try:
@@ -68,7 +68,7 @@ def explain():
         st.success(f"Customer is predicted to stay with {(100-probability):.2f}% probability")
         st.session_state.non_churn_prob = 100 - probability
     
-    st.subheader("Feature Impact Analysis")
+    st.subheader("Feature Impact Analysis of all the features")
     st.pyplot(result["plot"])
     
     st.session_state.update({
@@ -77,11 +77,12 @@ def explain():
     })
 
 
+    st.write("")
+    show_shap_top_features()
+
 
 
     st.info("""
     👉 Now you can:
-    - View detailed explanations on this page
-    - Get recommendations on the '💡 Recommendations' page
-    - Generate a full report on the '📑 Report' page
+    - Generate a full report on the 'Generate 📑 Report' page
     """)
