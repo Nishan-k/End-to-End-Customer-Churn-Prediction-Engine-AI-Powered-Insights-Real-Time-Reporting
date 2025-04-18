@@ -25,11 +25,7 @@ def predict():
         
 
         if st.button("Make New Prediction"):
-            st.session_state.display_customer_health_dashboard = False
-            st.session_state.dashboard_data = None
-            st.session_state.input_features = None
-            st.session_state.shap_result = None
-            st.session_state.report_content = None
+            st.session_state.clear() 
             st.rerun()
 
 
