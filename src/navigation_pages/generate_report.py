@@ -1,9 +1,8 @@
 import streamlit as st  
 from llm.report import get_report
 from llm.pdf_generator import save_report_as_pdf
-import pandas as pd
-import matplotlib.pyplot as plt
-import plotly.express as px
+import os 
+
 
 def navigate_to_predict():
     st.session_state.page_selection = "📊 Predict"
@@ -78,15 +77,20 @@ def report_generation():
                        include_recommendations=include_recommendations
                        ) 
             
+        
+        
         st.session_state.report_content = response
         st.session_state.pdf_path = save_report_as_pdf(st.session_state.report_content)
-        with open(st.session_state.pdf_path, "rb") as file:
-                            st.download_button(
-                                label="📥 Download as PDF",
-                                data=file,
-                                file_name="Customer_churn_report.pdf",
-                                mime="application/pdf",
-                                key="download_pdf"
-                            )
-        
+        if st.session_state.report_content and os.path.exists(st.session_state.pdf_path):
+            with open(st.session_state.pdf_path, "rb") as file:
+                                st.download_button(
+                                    label="📥 Download as PDF",
+                                    data=file,
+                                    file_name="Customer_churn_report.pdf",
+                                    mime="application/pdf",
+                                    key="download_pdf"
+                                )
+        else:
+             st.error("⚠️ Failed to generate the PDF report. Please try again.")
+             st.write("Debug info - pdf_path:", st.session_state.pdf_path)
 
