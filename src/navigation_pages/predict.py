@@ -25,8 +25,22 @@ def predict():
         
 
         if st.button("Make New Prediction"):
-            st.session_state.clear() 
-            st.rerun()
+             current_page = st.session_state.get("page_selection", "📊 Predict")
+             keys_to_reset = [
+                    "input_features", 
+                    "shap_values",
+                    "predictions",
+                    "report_content",
+                    "pdf_path",
+                    "churn_prob",
+                    "non_churn_prob"
+                        ]
+             for key in keys_to_reset:
+                if key in st.session_state:
+                    del st.session_state[key]
+            
+             st.session_state.page_selection = current_page
+             st.rerun()
 
 
    
