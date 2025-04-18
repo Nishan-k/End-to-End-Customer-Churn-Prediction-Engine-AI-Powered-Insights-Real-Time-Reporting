@@ -88,7 +88,7 @@ def predict():
 
 
                 # Send data to FastAPI for prediction
-                res = requests.post(url="http://127.0.0.1:8000/predict", json=input_features)
+                res = requests.post(url="https://end-to-end-customer-churn-prediction-8ftp.onrender.com/predict", json=input_features)
                 if res.status_code == 200:
                     st.session_state.input_features = input_features
                     st.write("")
