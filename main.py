@@ -5,6 +5,7 @@ import pandas as pd
 from src.navigation_pages.home import home_intro
 from src.navigation_pages.predict import predict
 from src.navigation_pages.explain import explain
+from src.navigation_pages.about import about
 from src.navigation_pages.generate_report import report_generation
 from src.data_processing.customer_data_access import get_customer_dist_count
 from src.components.charts import display_churn_distribution
@@ -63,7 +64,5 @@ if page == "📑 Generate Report":
     report_generation()
 
 if page == "ℹ️ About":
-    st.write("""A database was initially used for data ingestion. 
-             For deployment, I switched to a static CSV for simplicity. 
-             A database version with prediction logging and retraining functionality is in progress.""")
-    st.write("testing ")
+    about()
+    

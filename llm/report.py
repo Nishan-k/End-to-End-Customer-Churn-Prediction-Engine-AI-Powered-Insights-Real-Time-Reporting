@@ -8,7 +8,7 @@ from datetime import datetime
 load_dotenv(override=True)
 
 # OpenAI:
-api_key = st.secrets["OPENAI_API_KEY"]
+api_key = st.secrets["OPENAI_API_KEY"]  #loading from Streamlit's secret section
 MODEL = 'gpt-4o-mini'
 openai = OpenAI()
 

@@ -32,7 +32,3 @@ def predict_churn(input_features:Input_features):
         return {'error': str(e)}
 
 
-# @app.post("/explain")
-# async def explain_shap():
-#     result = create_clean_shap_dashboard(customer_data=customer_data, model=model)
-#     return result
