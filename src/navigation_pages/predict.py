@@ -50,7 +50,7 @@ def predict():
    
         if st.button("Make New Prediction"):
             reset_prediction()
-            st.experimental_rerun()
+            
             
             #  current_page = st.session_state.nav_location = "📊 Predict"
             #  keys_to_reset = [
