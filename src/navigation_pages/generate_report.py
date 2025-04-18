@@ -29,7 +29,6 @@ def report_generation():
     shap_values = st.session_state.shap_values # session from explain.py
     predictions = st.session_state.predictions # session from explain.py
     customer_data = st.session_state.input_features # session from predict.py
-    top_5_features = dict(sorted(shap_values.items(), key=lambda x: abs(x[1]), reverse=True)[:5])
     
     
     
