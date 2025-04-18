@@ -29,8 +29,9 @@ def get_churn_count():
     """
     Get the total number of customers who will churn.
     """
+    result = execute_query(
+        "SELECT COUNT(*) FROM customer WHERE churn = 'Yes'",
+        return_df=True
+    )
+    return result.iloc[0, 0] if not result.empty else 0
     
-    query = "SELECT COUNT(*) FROM customer WHERE churn = 'Yes';"
-    result = execute_query(query=query, return_df=True)
-    value =  result.iloc[0][0]
-    return value
