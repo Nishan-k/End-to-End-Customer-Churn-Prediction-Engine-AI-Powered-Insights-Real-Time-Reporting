@@ -10,6 +10,11 @@ from src.data_processing.customer_data_access import get_customer_dist_count
 from src.components.charts import display_churn_distribution
 
 
+
+
+
+
+
 # Navigation section:
 page = st.sidebar.selectbox("Navigation Menu", ["🏠 Home", "📊 Predict", 
                                                 "📖 Explain", "📑 Generate Report", "ℹ️ About"], key="page_selection")
