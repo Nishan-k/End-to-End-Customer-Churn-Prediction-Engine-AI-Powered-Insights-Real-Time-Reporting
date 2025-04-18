@@ -1,5 +1,4 @@
 import plotly.express as px
-import matplotlib.pyplot as plot
 from src.data_processing.customer_data_access import get_churn_count, load_all_data
 import streamlit as st
 import pandas as pd
