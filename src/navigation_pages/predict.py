@@ -88,7 +88,8 @@ def predict():
                     st.warning("""
                         **Free-tier delay alert:**  
                         First prediction may take ~50s.  
-                        (Backend is waking up... ☕)  
+                        (Backend is waking up... ☕) 
+                        Thank you for your patience !! 
                     """)
                     time.sleep(1)
 
@@ -123,22 +124,6 @@ def predict():
                 if res.status_code == 200:
                     st.session_state.input_features = input_features
                     st.write("")
-
-                    # Session for generate report to function:
-                    customer_data = pd.DataFrame.from_dict(
-                                {k: [v] for k, v in input_features.items()}
-                                    )
-
-                    display_customer_health_dashboard(res=res, input_features=input_features)
-                    shap_data = create_clean_shap_dashboard(customer_data=customer_data, model=model)
-                    st.session_state.shap_values = shap_data['shap_values']
-
-                    predictions = res.json()['Prediction']
-                    st.session_state.predictions = predictions
-
-                    st.session_state.customer_data = customer_data
-
-
                     st.write("")
                     st.subheader("Given Input Features")
                     df = pd.DataFrame([st.session_state.input_features]).T.reset_index()
