@@ -21,13 +21,6 @@ def predict():
     """
     st.title("Churn Prediction")
     st.write("")
-
-    st.warning("""
-                ⚠️ **Note for Recruiters:**  
-                - First prediction may take **~50 seconds** (Render free-tier cold start).  
-                - Subsequent requests will be faster (~5 sec).  
-                - Thank you for your patience! """, 
-                    icon="🚨")
     
     st.write("")
     
@@ -123,9 +116,7 @@ def predict():
                     "total_charges" : round(total_charges, 2)
                 }
 
-                customer_data = pd.DataFrame.from_dict(
-                                {k: [v] for k, v in input_features.items()}
-                 )
+                
       
                 # Sending data to FastAPI for prediction
                 res = requests.post(url="https://end-to-end-customer-churn-prediction-8ftp.onrender.com/predict", json=input_features)
@@ -134,12 +125,18 @@ def predict():
                     st.write("")
 
                     # Session for generate report to function:
+                    customer_data = pd.DataFrame.from_dict(
+                                {k: [v] for k, v in input_features.items()}
+                                    )
+
                     display_customer_health_dashboard(res=res, input_features=input_features)
                     shap_data = create_clean_shap_dashboard(customer_data=customer_data, model=model)
                     st.session_state.shap_values = shap_data['shap_values']
 
-                    prediction = res.json()['Prediction']
-                    st.session_state.predictions = prediction
+                    predictions = res.json()['Prediction']
+                    st.session_state.predictions = predictions
+
+                    st.session_state.input_features = customer_data
 
 
                     st.write("")
