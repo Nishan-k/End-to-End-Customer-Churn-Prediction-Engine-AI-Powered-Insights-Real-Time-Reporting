@@ -37,6 +37,16 @@ def predict():
     """
     st.title("Churn Prediction")
     st.write("")
+
+    with st.expander("⚠️ Note for Recruiters"):
+                    st.write(
+                        """
+                        - **First prediction may take ~50 seconds** (Render free-tier cold start).  
+                        - Subsequent requests will be faster (~5 sec).  
+                        - Thank you for your patience!  
+                        """
+                            )
+    st.write("")
     
     if 'display_customer_health_dashboard' not in st.session_state:
          st.session_state.display_customer_health_dashboard  = False
@@ -141,11 +151,4 @@ def predict():
                     st.write("")
 
 
-                with st.expander("⚠️ Note for Users"):
-                    st.write(
-                        """
-                        - **First prediction may take ~50 seconds** (Render free-tier cold start).  
-                        - Subsequent requests will be faster (~5 sec).  
-                        - Thank you for your patience!  
-                        """
-                            )
+               
