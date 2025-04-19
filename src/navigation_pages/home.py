@@ -1,5 +1,5 @@
 import streamlit as st 
-from src.assets.styles.styling import styled_write
+
 
 
 image = "src/assets/images/churn.jpg"
