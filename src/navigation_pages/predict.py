@@ -82,7 +82,7 @@ def predict():
             monthly_charges = st.number_input("Monthly Charge:", min_value=18.95, max_value=130.0, step=0.1)
             total_charges = st.number_input("Total Charge:", min_value=35.0, max_value=7900.0, step=0.1)
 
-        if st.button("Predict Churn"):
+        
                 # # Warning section for delay of the backend:
                 # with st.chat_message("assistant"):
                 #     st.warning("""
@@ -95,34 +95,36 @@ def predict():
 
 
                 # Prepare data for API request
-                input_features = {
-                    "gender" : gender,
-                    "senior_citizen" : senior_citizen,
-                    "partner" : partner,
-                    "dependents" : dependents,
-                    "tenure" : tenure,
-                    "phone_service" : phone_service,
-                    "multiple_lines" : multiple_lines,
-                    "internet_service" : internet_service,
-                    "online_security" : online_security,
-                    "online_backup" : online_backup,
-                    "device_protection" : device_protection,
-                    "tech_support" : tech_support,
-                    "streaming_tv" : streaming_tv,
-                    "streaming_movies" : streaming_movies,
-                    "contract" : contract,
-                    "paperless_billing" : paperless_billing,
-                    "payment_method" : payment_method,
-                    "monthly_charges" : round(monthly_charges, 2),
-                    "total_charges" : round(total_charges, 2)
-                }
+            input_features = {
+                "gender" : gender,
+                "senior_citizen" : senior_citizen,
+                "partner" : partner,
+                "dependents" : dependents,
+                "tenure" : tenure,
+                "phone_service" : phone_service,
+                "multiple_lines" : multiple_lines,
+                "internet_service" : internet_service,
+                "online_security" : online_security,
+                "online_backup" : online_backup,
+                "device_protection" : device_protection,
+                "tech_support" : tech_support,
+                "streaming_tv" : streaming_tv,
+                "streaming_movies" : streaming_movies,
+                "contract" : contract,
+                "paperless_billing" : paperless_billing,
+                "payment_method" : payment_method,
+                "monthly_charges" : round(monthly_charges, 2),
+                "total_charges" : round(total_charges, 2)
+            }
 
                 
       
                 # Sending data to FastAPI for prediction
+            if st.button("Predict Churn"):
                 res = requests.post(url="https://end-to-end-customer-churn-prediction-8ftp.onrender.com/predict", json=input_features)
                 if res.status_code == 200:
                     st.session_state.input_features = input_features
+                    display_customer_health_dashboard(res=res, input_features=input_features)
                     st.write("")
                     st.write("")
                     st.subheader("Given Input Features")
