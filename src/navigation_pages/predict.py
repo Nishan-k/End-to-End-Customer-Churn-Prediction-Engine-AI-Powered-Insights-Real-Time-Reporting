@@ -136,7 +136,7 @@ def predict():
                     predictions = res.json()['Prediction']
                     st.session_state.predictions = predictions
 
-                    st.session_state.input_features = customer_data
+                    st.session_state.customer_data = customer_data
 
 
                     st.write("")
