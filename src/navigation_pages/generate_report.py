@@ -81,9 +81,6 @@ def report_generation():
         st.session_state.report_content = response
         pdf_path = save_report_as_pdf(st.session_state.report_content)
 
-        st.write(f"Debug - report content type: {type(st.session_state.report_content)}")
-        st.write(f"Debug - report content length: {len(str(st.session_state.report_content)) if st.session_state.report_content else 0}")
-        st.write(f"Debug - pdf_path: {pdf_path}")
                 
         if pdf_path is not None and os.path.exists(pdf_path):
             st.session_state.pdf_path = pdf_path
