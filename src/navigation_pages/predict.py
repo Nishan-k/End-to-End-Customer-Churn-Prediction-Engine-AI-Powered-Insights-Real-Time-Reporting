@@ -83,15 +83,15 @@ def predict():
             total_charges = st.number_input("Total Charge:", min_value=35.0, max_value=7900.0, step=0.1)
 
         if st.button("Predict Churn"):
-                # Warning section for delay of the backend:
-                with st.chat_message("assistant"):
-                    st.warning("""
-                        **Free-tier delay alert:**  
-                        First prediction may take ~50s.  
-                        (Backend is waking up... ☕) 
-                        Thank you for your patience !! 
-                    """)
-                    time.sleep(1)
+                # # Warning section for delay of the backend:
+                # with st.chat_message("assistant"):
+                #     st.warning("""
+                #         **Free-tier delay alert:**  
+                #         First prediction may take ~50s.  
+                #         (Backend is waking up... ☕) 
+                #         Thank you for your patience !! 
+                #     """)
+                #     time.sleep(1)
 
 
                 # Prepare data for API request
