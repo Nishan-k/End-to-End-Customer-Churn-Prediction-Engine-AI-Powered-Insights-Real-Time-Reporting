@@ -14,11 +14,11 @@ def home_intro():
     st.write("")
     col1, col2 = st.columns([7, 7])
     with col1:
-        styled_write("""
+        st.write("""
                 Customer churn is the loss of customers over time. Predicting churn helps businesses 
                 identify at-risk customers, take proactive retention measures, reduce acquisition costs, 
                 and boost profitability through timely interventions like incentives and personalized services.
-                    """)
+                """)
     with col2:
         st.image(image)
         st.write("")
