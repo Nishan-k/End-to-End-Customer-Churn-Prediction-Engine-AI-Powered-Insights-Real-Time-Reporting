@@ -3,7 +3,7 @@ import requests
 import joblib
 from src.components.charts import display_customer_health_dashboard, create_clean_shap_dashboard
 import pandas as pd
-
+import time
 
 
     
@@ -22,14 +22,13 @@ def predict():
     st.title("Churn Prediction")
     st.write("")
 
-    with st.expander("⚠️ Note for Recruiters"):
-                    st.write(
-                        """
-                        - **First prediction may take ~45 seconds** (Render free-tier cold start).  
-                        - Subsequent requests will be faster (~2 sec).  
-                        - Thank you for your patience!  
-                        """
-                            )
+    st.warning("""
+                ⚠️ **Note for Recruiters:**  
+                - First prediction may take **~50 seconds** (Render free-tier cold start).  
+                - Subsequent requests will be faster (~5 sec).  
+                - Thank you for your patience! """, 
+                    icon="🚨")
+    
     st.write("")
     
     if 'display_customer_health_dashboard' not in st.session_state:
@@ -91,6 +90,16 @@ def predict():
             total_charges = st.number_input("Total Charge:", min_value=35.0, max_value=7900.0, step=0.1)
 
         if st.button("Predict Churn"):
+                # Warning section for delay of the backend:
+                with st.chat_message("assistant"):
+                    st.warning("""
+                        **Free-tier delay alert:**  
+                        First prediction may take ~50s.  
+                        (Backend is waking up... ☕)  
+                    """)
+                    time.sleep(1)
+
+
                 # Prepare data for API request
                 input_features = {
                     "gender" : gender,
@@ -123,9 +132,16 @@ def predict():
                 if res.status_code == 200:
                     st.session_state.input_features = input_features
                     st.write("")
+
+                    # Session for generate report to function:
                     display_customer_health_dashboard(res=res, input_features=input_features)
                     shap_data = create_clean_shap_dashboard(customer_data=customer_data, model=model)
                     st.session_state.shap_values = shap_data['shap_values']
+
+                    prediction = res.json()['Prediction']
+                    st.session_state.predictions = prediction
+
+
                     st.write("")
                     st.subheader("Given Input Features")
                     df = pd.DataFrame([st.session_state.input_features]).T.reset_index()

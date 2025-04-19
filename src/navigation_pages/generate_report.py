@@ -26,8 +26,8 @@ def report_generation():
             return
         return
     
-    shap_values = st.session_state.shap_values # session from explain.py
-    predictions = st.session_state.predictions # session from explain.py
+    shap_values = st.session_state.shap_values # session from predict.py
+    predictions = st.session_state.predictions # session from predict.py
     customer_data = st.session_state.input_features # session from predict.py
     
     
