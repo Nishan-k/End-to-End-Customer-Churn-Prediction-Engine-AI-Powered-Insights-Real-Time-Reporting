@@ -120,7 +120,8 @@ def predict():
                     "total_charges" : round(total_charges, 2)
                 }
 
-    
+
+      
                 # Sending data to FastAPI for prediction
                 res = requests.post(url="https://end-to-end-customer-churn-prediction-8ftp.onrender.com/predict", json=input_features)
                 if res.status_code == 200:
@@ -138,3 +139,13 @@ def predict():
                     st.write("")
                     st.info("👉Now, you can go to '📖 Explain' page or 📑 Generate Report page for further actions for this customer from the Navigation bar.")
                     st.write("")
+
+
+        with st.expander("⚠️ Note for Users"):
+            st.write(
+                """
+                - **First prediction may take ~50 seconds** (Render free-tier cold start).  
+                - Subsequent requests will be faster (~5 sec).  
+                - Thank you for your patience!  
+                """
+            )
