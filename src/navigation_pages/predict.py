@@ -123,7 +123,6 @@ def predict():
         if st.button("Predict Churn"):
             res = requests.post(url="https://end-to-end-customer-churn-prediction-8ftp.onrender.com/predict", json=input_features)
             if res.status_code == 200:
-                st.session_state.input_features = input_features
                 display_customer_health_dashboard(res=res, input_features=input_features)
                 st.write("")
                 st.write("")
@@ -131,6 +130,7 @@ def predict():
                 df = pd.DataFrame([st.session_state.input_features]).T.reset_index()
                 df.columns = ['Feature Name', 'Values']
                 st.table(df)                    
+                st.session_state.input_features = input_features
                 st.session_state.display_customer_health_dashboard = True
                 st.session_state.dashboard_data = (res, input_features)
                 st.write("")
