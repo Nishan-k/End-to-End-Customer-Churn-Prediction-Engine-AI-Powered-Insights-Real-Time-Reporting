@@ -75,13 +75,29 @@ def report_generation():
                        audience=audience,
                        include_recommendations=include_recommendations
                        ) 
-            
+        
         
         
         st.session_state.report_content = response
-        pdf_path  = save_report_as_pdf(st.session_state.report_content)
-        st.write(f"Debugging: PDF path: {pdf_path} and the type is: {type(pdf_path)}")
-        st.session_state.pdf_path = pdf_path
+        pdf_path = save_report_as_pdf(st.session_state.report_content)
+
+        st.write(f"Debug - report content type: {type(st.session_state.report_content)}")
+        st.write(f"Debug - report content length: {len(str(st.session_state.report_content)) if st.session_state.report_content else 0}")
+        st.write(f"Debug - pdf_path: {pdf_path}")
+                
+        if pdf_path is not None and os.path.exists(pdf_path):
+            st.session_state.pdf_path = pdf_path
+            with open(pdf_path, "rb") as file:
+                st.download_button(
+                    label="📥 Download as PDF",
+                    data=file,
+                    file_name="Customer_churn_report.pdf",
+                    mime="application/pdf",
+                    key="download_pdf"
+                )
+        else:
+            st.error("⚠️ Failed to generate the PDF report. Please try again.")
+            st.write("Debug info - pdf_path:", pdf_path)
         # if st.session_state.report_content and os.path.exists(st.session_state.pdf_path):
         #     with open(st.session_state.pdf_path, "rb") as file:
         #                         st.download_button(
