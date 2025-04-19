@@ -1,34 +1,18 @@
 import streamlit as st 
 import requests
-from src.components.charts import display_customer_health_dashboard
+import joblib
+from src.components.charts import display_customer_health_dashboard, create_clean_shap_dashboard
 import pandas as pd
 
 
-# def reset_prediction():
-#     """
-#     Reset all prediction-related session state variables
-#     """
-
-#     st.session_state.display_customer_health_dashboard = False
-#     st.session_state.dashboard_data = False
-  
-
-#     keys_to_reset = [
-#         "shap_values",
-#         "predictions",
-#         "report_content",
-#         "pdf_path",
-#         "churn_prob",
-#         "non_churn_prob"
-#     ]
-#     for key in keys_to_reset:
-#         if key in st.session_state:
-#             del st.session_state[key]
-    
 
     
 
-
+try:
+    model = joblib.load("ml/churn_clf_model.pkl")
+except Exception as e:
+    st.error(f"Failed to load model: {e}")
+    st.stop()
 
 
 def predict():
@@ -41,8 +25,8 @@ def predict():
     with st.expander("⚠️ Note for Recruiters"):
                     st.write(
                         """
-                        - **First prediction may take ~50 seconds** (Render free-tier cold start).  
-                        - Subsequent requests will be faster (~5 sec).  
+                        - **First prediction may take ~45 seconds** (Render free-tier cold start).  
+                        - Subsequent requests will be faster (~2 sec).  
                         - Thank you for your patience!  
                         """
                             )
@@ -130,7 +114,9 @@ def predict():
                     "total_charges" : round(total_charges, 2)
                 }
 
-        
+                customer_data = pd.DataFrame.from_dict(
+                                {k: [v] for k, v in input_features.items()}
+                 )
       
                 # Sending data to FastAPI for prediction
                 res = requests.post(url="https://end-to-end-customer-churn-prediction-8ftp.onrender.com/predict", json=input_features)
@@ -138,6 +124,8 @@ def predict():
                     st.session_state.input_features = input_features
                     st.write("")
                     display_customer_health_dashboard(res=res, input_features=input_features)
+                    shap_data = create_clean_shap_dashboard(customer_data=customer_data, model=model)
+                    st.session_state.shap_values = shap_data['shap_values']
                     st.write("")
                     st.subheader("Given Input Features")
                     df = pd.DataFrame([st.session_state.input_features]).T.reset_index()
