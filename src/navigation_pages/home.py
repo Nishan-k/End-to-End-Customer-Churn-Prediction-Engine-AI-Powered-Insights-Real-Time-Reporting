@@ -12,7 +12,7 @@ def home_intro():
     """
     st.title("Customer Churn Prediction Model")
     st.write("")
-    col1, col2 = st.columns([4, 4])
+    col1, col2 = st.columns([7, 7])
     with col1:
         styled_write("""
                 Customer churn is the loss of customers over time. Predicting churn helps businesses 
