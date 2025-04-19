@@ -4,7 +4,7 @@ import streamlit as st
 st.markdown("""
 <style>
 .custom-font {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.6;
 }
 </style>
