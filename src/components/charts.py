@@ -314,7 +314,7 @@ def show_shap_top_features():
     fig = px.bar(
         features_to_show_df,
         x='Feature Name',
-        y='Values',
+        y='SHAP Values',
         color='Color',
         color_discrete_map={
             'Increases churn risk ↑': '#b11346',
