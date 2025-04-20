@@ -34,7 +34,7 @@ churn_count = data[data["churn"] == "Yes"]["count"].values
 
 # Navigation section:
 page = st.sidebar.selectbox("Navigation Menu", ["🏠 Home", "📊 Predict", 
-                                                "📖 Explain", "📑 Generate Report", "ℹ️ About"], key="page_selection")
+                                                "📖 Explain", "📑 Generate Report", "ℹ️ About"], key="navigation_target")
 st.sidebar.markdown("**🔍 Navigate through the sections to explore customer churn insights!**")
 st.sidebar.markdown("")
 
