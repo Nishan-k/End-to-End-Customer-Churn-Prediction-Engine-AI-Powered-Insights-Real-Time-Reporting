@@ -75,7 +75,7 @@ def report_generation():
 
     if st.button("Generate Report"):
         with st.spinner("Generating report..."):  
-            response = get_report(shap_values=shap_values, 
+            get_report(shap_values=shap_values, 
                     predictions=predictions, 
                     customer_data=customer_data,
                     prediction_prob=[churn_pred if predictions == "Churn" else non_churn_pred],
@@ -83,7 +83,7 @@ def report_generation():
                     audience=audience,
                     include_recommendations=include_recommendations
                     )      
-            st.write(response)
+            
         # timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         # pdf_filename = f"Customer_churn_report_{timestamp}.pdf"
         # pdf_path = save_report_as_pdf(report_text=st.session_state.report_content, pdf_filename=pdf_filename)
@@ -103,7 +103,7 @@ def report_generation():
         #     st.write("Debug info - pdf_path:", pdf_path)
 
 
-        
+
         # if st.session_state.report_content and os.path.exists(st.session_state.pdf_path):
         #     with open(st.session_state.pdf_path, "rb") as file:
         #                         st.download_button(
