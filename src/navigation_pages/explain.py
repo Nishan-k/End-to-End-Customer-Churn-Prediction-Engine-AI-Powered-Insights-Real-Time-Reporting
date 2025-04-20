@@ -15,7 +15,7 @@ def navigate_to_predict():
 
 
 def navigate_to_generate_report():
-    st.session_state.page_selection = "📑 Generate Report"
+    st.session_state.navigaton_target = "📑 Generate Report"
     
 
 def explain():
@@ -85,5 +85,5 @@ def explain():
     show_shap_top_features()
 
 
-
-    navigate_to_generate_report()
+    if st.button("Go to Generate Report Page", on_click=navigate_to_generate_report):
+        st.session_state.navigation_target = False
