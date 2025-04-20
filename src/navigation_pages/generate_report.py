@@ -69,7 +69,13 @@ def report_generation():
     st.write(predictions)
     st.write("--")
     st.write(shap_values)
+    st.write("--")
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    pdf_filename = f"Customer_churn_report_{timestamp}.pdf"
+    pdf_path = save_report_as_pdf(st.session_state.report_content)
+    st.write(pdf_path)
 
+    
     if st.button("Generate Report"):
         with st.spinner("Generating report..."):  
             get_report(shap_values=shap_values, 
@@ -80,12 +86,6 @@ def report_generation():
                     audience=audience,
                     include_recommendations=include_recommendations
                     )      
-        
-        
-        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-        pdf_filename = f"Customer_churn_report_{timestamp}.pdf"
-        pdf_path = save_report_as_pdf(st.session_state.report_content)
-
                 
         if pdf_path is not None and os.path.exists(pdf_path):
             st.session_state.pdf_path = pdf_path
