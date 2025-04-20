@@ -75,7 +75,7 @@ def report_generation():
 
     if st.button("Generate Report"):
         with st.spinner("Generating report..."):  
-            get_report(shap_values=shap_values, 
+            response = get_report(shap_values=shap_values, 
                     predictions=predictions, 
                     customer_data=customer_data,
                     prediction_prob=[churn_pred if predictions == "Churn" else non_churn_pred],
@@ -83,24 +83,26 @@ def report_generation():
                     audience=audience,
                     include_recommendations=include_recommendations
                     )      
+            st.session_state.report_content = response
             
-        # timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-        # pdf_filename = f"Customer_churn_report_{timestamp}.pdf"
-        # pdf_path = save_report_as_pdf(report_text=st.session_state.report_content, pdf_filename=pdf_filename)
-        # st.write(pdf_path)
-        # if pdf_path is not None and os.path.exists(pdf_path):
-        #     st.session_state.pdf_path = pdf_path
-        #     with open(pdf_path, "rb") as file:
-        #         st.download_button(
-        #             label="📥 Download as PDF",
-        #             data=file,
-        #             file_name=pdf_filename,
-        #             mime="application/pdf",
-        #             key="download_pdf"
-        #         )
-        # else:
-        #     st.error("⚠️ Failed to generate the PDF report. Please try again.")
-        #     st.write("Debug info - pdf_path:", pdf_path)
+            
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+        pdf_filename = f"Customer_churn_report_{timestamp}.pdf"
+        pdf_path = save_report_as_pdf(report_text=st.session_state.report_content, pdf_filename=pdf_filename)
+        st.write(pdf_path)
+        if pdf_path is not None and os.path.exists(pdf_path):
+            st.session_state.pdf_path = pdf_path
+            with open(pdf_path, "rb") as file:
+                st.download_button(
+                    label="📥 Download as PDF",
+                    data=file,
+                    file_name=pdf_filename,
+                    mime="application/pdf",
+                    key="download_pdf"
+                )
+        else:
+            st.error("⚠️ Failed to generate the PDF report. Please try again.")
+            st.write("Debug info - pdf_path:", pdf_path)
 
 
 
