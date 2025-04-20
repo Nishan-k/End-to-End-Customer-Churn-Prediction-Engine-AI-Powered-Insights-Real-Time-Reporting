@@ -82,8 +82,7 @@ def explain():
 
     st.write("")
     show_shap_top_features()
-    st.session_state.workflow_stage = 2
-    st.success("Explanation complete! You can now generate a report.")
+ 
 
 
     

@@ -6,6 +6,7 @@ import os
 
 def navigate_to_predict():
     st.session_state.navigation_target = "📊 Predict"
+    st.rerun()
 
 
 def report_generation():
@@ -26,11 +27,19 @@ def report_generation():
             return
         return
     
-    shap_values = st.session_state.shap_values # session from explain.py
-    predictions = st.session_state.predictions # session from explain.py
-    customer_data = st.session_state.input_features # session from predict.py
+    # shap_values = st.session_state.shap_values # session from explain.py
+    # predictions = st.session_state.predictions # session from explain.py
+    # customer_data = st.session_state.input_features # session from predict.py
     
+    shap_values = st.session_state.shap_values
+    if hasattr(shap_values, "values"):
+        # Convert SHAP object to dictionary if needed
+        feature_names = shap_values.feature_names if hasattr(shap_values, "feature_names") else [f"feature_{i}" for i in range(len(shap_values.values))]
+        shap_values = {str(feature): float(value) for feature, value in zip(feature_names, shap_values.values)}
     
+    # Ensure all values are basic Python types
+    predictions = st.session_state.predictions
+    customer_data = {str(k): str(v) if not isinstance(v, (int, float)) else v for k, v in st.session_state.input_features.items()}
     
    
     st.subheader("Prediction Result")
