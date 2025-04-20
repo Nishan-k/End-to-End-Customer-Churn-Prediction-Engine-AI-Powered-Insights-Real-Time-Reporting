@@ -280,26 +280,32 @@ def show_shap_top_features():
     """
     shap_values = st.session_state.shap_values # session from explain.py
     input_features = st.session_state.input_features
-    st.write(input_features)
-    st.write("--")
-    st.write(shap_values)
-    st.write("--")
-    combined = {k: shap_values[k] + input_features[k] for k in shap_values}
-    st.write(combined)
-
-
-
+    combined = {
+                    k: (input_features[k], shap_values.get(k, 0)) for k in input_features  # default to 0 if not in shap
+                    
+                }
+    
     st.subheader("Explore Feature Importance with SHAP")
     n = st.number_input("Number of Features:", min_value=3, max_value=19, step=1)
 
     # Sorting the SHAP values:
-    features_to_show = dict(sorted(shap_values.items(), key=lambda x: abs(x[1]), reverse=True)[:n])
-
-
-    st.subheader(f"{n} Key Factors Influencing Prediction")
-    features_to_show_df = pd.DataFrame([features_to_show]).T.reset_index()
-    features_to_show_df.columns = ['Feature Name', 'Values']
+    features_to_show = dict(sorted(combined.items(), key=lambda x: abs(x[1][1]), reverse=True)[:n]) 
+    features_to_show_df = pd.DataFrame([
+    {"Feature Name": k, "Feature values": v[0], "SHAP Values": v[1]}
+    for k, v in features_to_show.items()])  
     st.table(features_to_show_df)
+
+
+    
+
+    
+    # features_to_show = dict(sorted(shap_values.items(), key=lambda x: abs(x[1]), reverse=True)[:n])
+
+
+    # st.subheader(f"{n} Key Factors Influencing Prediction")
+    # features_to_show_df = pd.DataFrame([features_to_show]).T.reset_index()
+    # features_to_show_df.columns = ['Feature Name', 'Values']
+    
 
 
     st.write("")
