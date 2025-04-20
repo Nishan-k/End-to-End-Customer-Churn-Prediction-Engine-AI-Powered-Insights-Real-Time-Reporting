@@ -2,7 +2,9 @@
 
 <h3>The site is live, please feel free to visit:</h3>
 
-*To Live Demo :  [End-to-end customer churn predictoin model](https://end-to-end-customer-churn-prediction-engine-ai-powered.streamlit.app/)*
+*To Live Demo :  [End-to-end customer churn prediction model](https://end-to-end-customer-churn-prediction-engine-ai-powered.streamlit.app/)*
+
+
 ![alt text](churn.jpg)
 
 <hr>
