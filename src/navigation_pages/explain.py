@@ -10,8 +10,8 @@ except Exception as e:
     st.error(f"Failed to load model: {e}")
     st.stop()
 
-# def navigate_to_predict():
-#     st.session_state.navigation_target = "📊 Predict"
+def navigate_to_predict():
+    st.session_state.navigation_target = "📊 Predict"
 
 
 
@@ -21,11 +21,11 @@ def explain():
     """
     This function is responsible for displaying a SHAP chart and a table of SHAP values.
     """
-    # if 'input_features' not in st.session_state:
-    #     st.warning("⚠️ No prediction data available. Please make a prediction first.")
-    #     if st.button("Go to Prediction Page", on_click=navigate_to_predict):
-    #         return  
-    #     return  
+    if 'input_features' not in st.session_state:
+        st.warning("⚠️ No prediction data available. Please make a prediction first.")
+        if st.button("Go to Prediction Page", on_click=navigate_to_predict):
+            return  
+        return  
     
     
     current_features = str(st.session_state.input_features)

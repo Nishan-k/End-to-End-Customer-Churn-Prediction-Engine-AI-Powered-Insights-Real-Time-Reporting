@@ -3,7 +3,7 @@ import requests
 import joblib
 from src.components.charts import display_customer_health_dashboard, create_clean_shap_dashboard
 import pandas as pd
-import time
+
 
 
     
@@ -139,7 +139,7 @@ def predict():
                 st.write("")
 
                 
-                st.session_state.workflow_stage = 1
+        
                 
                 # Show success message
                 st.success("Prediction complete! You can now explore explanations.")
