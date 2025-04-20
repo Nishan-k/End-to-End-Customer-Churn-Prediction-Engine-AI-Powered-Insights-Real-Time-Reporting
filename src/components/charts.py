@@ -309,7 +309,7 @@ def show_shap_top_features():
 
 
     st.write("")
-    features_to_show_df['Color'] = ['Descreases churn risk ↓' if v < 0 else 'Increases churn risk ↑' for v in features_to_show_df['Values']]
+    features_to_show_df['Color'] = ['Descreases churn risk ↓' if v < 0 else 'Increases churn risk ↑' for v in features_to_show_df['SHAP Values']]
     # Plot with Plotly
     fig = px.bar(
         features_to_show_df,
