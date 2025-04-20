@@ -1,6 +1,7 @@
 import streamlit as st  
 from llm.report import get_report
 from llm.pdf_generator import save_report_as_pdf
+from datetime import datetime
 import os 
 
 
@@ -63,22 +64,26 @@ def report_generation():
         )
     
     include_recommendations = st.checkbox("Include Actionable Recommendations", value=True)
-    
+    st.write(customer_data)    
+    st.write("--")
+    st.write(predictions)
+    st.write("--")
+    st.write(shap_values)
 
     if st.button("Generate Report"):
-        with st.spinner("Generating report..."):
-            response = get_report(shap_values=shap_values, 
-                       predictions=predictions, 
-                       customer_data=customer_data,
-                       prediction_prob=[churn_pred if predictions == "Churn" else non_churn_pred],
-                       report_type=report_type,
-                       audience=audience,
-                       include_recommendations=include_recommendations
-                       ) 
+        with st.spinner("Generating report..."):  
+            get_report(shap_values=shap_values, 
+                    predictions=predictions, 
+                    customer_data=customer_data,
+                    prediction_prob=[churn_pred if predictions == "Churn" else non_churn_pred],
+                    report_type=report_type,
+                    audience=audience,
+                    include_recommendations=include_recommendations
+                    )      
         
         
-        
-        st.session_state.report_content = response
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+        pdf_filename = f"Customer_churn_report_{timestamp}.pdf"
         pdf_path = save_report_as_pdf(st.session_state.report_content)
 
                 
@@ -88,15 +93,10 @@ def report_generation():
                 st.download_button(
                     label="📥 Download as PDF",
                     data=file,
-                    file_name="Customer_churn_report.pdf",
+                    file_name=pdf_filename,
                     mime="application/pdf",
                     key="download_pdf"
                 )
-                st.session_state.shap_value = None
-                st.session_state.predictions = None
-                st.session_state.input_features = None
-                st.session_state.pdf_path = None
-                st.session_state.report_content = None
         else:
             st.error("⚠️ Failed to generate the PDF report. Please try again.")
             st.write("Debug info - pdf_path:", pdf_path)
