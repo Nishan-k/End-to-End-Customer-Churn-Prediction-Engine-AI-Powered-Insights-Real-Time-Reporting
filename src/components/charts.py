@@ -286,7 +286,8 @@ def show_shap_top_features():
                 }
     
     st.subheader("Explore Feature Importance with SHAP")
-    n = st.number_input("Number of Features:", min_value=3, max_value=19, step=1)
+    st.markdown("<h5 style='font-size:20px;'>Number of Features:</h5>", unsafe_allow_html=True)
+    n = st.number_input("", min_value=3, max_value=19, step=1)
 
     # Sorting the SHAP values:
     features_to_show = dict(sorted(combined.items(), key=lambda x: abs(x[1][1]), reverse=True)[:n]) 
@@ -294,20 +295,6 @@ def show_shap_top_features():
     {"Feature Name": k, "Feature values": v[0], "SHAP Values": v[1]}
     for k, v in features_to_show.items()])  
     st.table(features_to_show_df)
-
-
-    
-
-    
-    # features_to_show = dict(sorted(shap_values.items(), key=lambda x: abs(x[1]), reverse=True)[:n])
-
-
-    # st.subheader(f"{n} Key Factors Influencing Prediction")
-    # features_to_show_df = pd.DataFrame([features_to_show]).T.reset_index()
-    # features_to_show_df.columns = ['Feature Name', 'Values']
-    
-
-
     st.write("")
     features_to_show_df['Color'] = ['Descreases churn risk ↓' if v < 0 else 'Increases churn risk ↑' for v in features_to_show_df['SHAP Values']]
     # Plot with Plotly
