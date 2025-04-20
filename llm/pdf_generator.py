@@ -75,6 +75,7 @@ def save_report_as_pdf(report_text, pdf_filename):
         
         pdf.output(pdf_path)
         
+        
        
         if not os.path.exists(pdf_path):
             st.error("PDF file was not created!")
