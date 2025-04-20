@@ -24,7 +24,7 @@ The dataset that is used in this project was downloaded from Kaggle and here is 
 <li><a href="#Overview"><b> Overview </a></b></li>
 <li><a href="#Datasets"><b> Datasets </a></b></li>
 <li><a href="#EDA"><b> Exploratory Data Analysis </a></b></li>
-<li><a href="#featureengineering"><b> Feature Engineering </a></b></li>
+<li><a href="#datapreprocessing"><b> Data Preprocessing </a></b></li>
 <li><a href="#summary"><b> Summary Till Now </a></b></li>
 <li><a href="#tuning"><b> Model Tuning </a></b></li>
 <li><a href="#finalization"><b> Model Finalization </a></b></li>
@@ -43,16 +43,58 @@ Then after authentication and creating a connection, a function <i>load_all_data
 
 <h2 id="EDA">3. EDA</h2>
 
-<h3> First the data is loaded. </h3>
+<h3> First the data is loaded: </h3>
 
 ![alt text](image.png)
 
-<h3> Dimension of the dataset. </h3>
+<h3> Dimension of the dataset: </h3>
 
 ![alt text](image1.png)
 
 
-<h3> Checking for NULL values. </h3>
+<h3> Checking for NULL values: </h3>
 
 ![alt text](image-1.png)
+
+<h3> Checking the data types: </h3>
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+<h3> Data Exploration with Visualization: </h3>
+
+![alt text](image-5.png)
+
+![alt text](image-6.png)
+
+This is a pure case of class imbalance. As we can see, the classes are imbalanced, the count of Non-Churn is way higher than the count of the Churn.
+
+<h3> Handling Class Imbalance: </h3>
+
+![alt text](image-7.png)
+
+Here, the minority class (Class 1) has been oversampled.
+
+![alt text](image-8.png)
+
+So, later on the stage, we will be using both the balanced Vs the imbalanced dataset and see on which datasets, the model will generate the best result and accordingly drop one of the dataset.
+
+<h3> Visualizing Numerical Features: </h3>
+
+<b> Histogram:</b>
+
+![alt text](image-9.png)
+
+<b> Density Plot:</b>
+
+![alt text](image-10.png)
+
+
+<b> Box Plot:</b>
+
+![alt text](image-11.png)
+
+
+<h2 id="#datapreprocessing">4. Data Preprocessing</h2>
 
