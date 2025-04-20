@@ -286,7 +286,7 @@ def show_shap_top_features():
                 }
     
     st.subheader("Explore Feature Importance with SHAP")
-    st.markdown("<h5 style='font-size:20px;'>Number of Features:</h5>", unsafe_allow_html=True)
+    st.markdown("<h5 style='font-size:20px;'>Number of Features to drill down:</h5>", unsafe_allow_html=True)
     n = st.number_input("", min_value=3, max_value=19, step=1)
 
     # Sorting the SHAP values:
