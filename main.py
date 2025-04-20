@@ -7,11 +7,24 @@ from src.navigation_pages.predict import predict
 from src.navigation_pages.explain import explain
 from src.navigation_pages.about import about
 from src.navigation_pages.generate_report import report_generation
-from src.data_processing.customer_data_access import get_customer_dist_count
 from src.components.charts import display_churn_distribution
 
 
+def initialize_session_state():
+    if "workflow_stage" not in st.session_state:
+        st.session_state.workflow_stage = 0 
+    
+    if "prediction_data" not in st.session_state:
+        st.session_state.prediction_data = None
+    
+    if "explanation_data" not in st.session_state:
+        st.session_state.explanation_data = None
+    
+    if "navigation_target" not in st.session_state:
+        st.session_state.navigation_target = "🏠 Home"
 
+# Initialize session state
+initialize_session_state()
 
 
 # Load the data:
@@ -59,11 +72,36 @@ if page == "📊 Predict":
 
 # 3. Explain Page:
 if page == "📖 Explain":
-    explain()
+    # explain()
+    if st.session_state.workflow_stage < 1:
+        st.warning("Please make a prediction first before exploring explanations.")
+        if st.button("Go to Prediction Page"):
+            st.session_state.navigation_target = "📊 Predict"
+            st.rerun()
+    else:
+        explain()
+        if st.session_state.workflow_stage >= 2:  
+            if st.button("Generate Report"):
+                st.session_state.navigation_target = "📑 Generate Report"
+                st.rerun()
 
 
 if page == "📑 Generate Report":
-    report_generation()
+    # report_generation()
+    if st.session_state.workflow_stage < 1:
+        st.warning("Please make a prediction first before generating a report.")
+        if st.button("Go to Prediction Page"):
+            st.session_state.navigation_target = "📊 Predict"
+            st.rerun()
+    # Check for explanation
+    elif st.session_state.workflow_stage < 2:
+        st.warning("Please explore the explanations before generating a report.")
+        if st.button("Go to Explanation Page"):
+            st.session_state.navigation_target = "📖 Explain"
+            st.rerun()
+    else:
+        # If all prerequisites are met, show the report generation page
+        report_generation()
 
 if page == "ℹ️ About":
     about()

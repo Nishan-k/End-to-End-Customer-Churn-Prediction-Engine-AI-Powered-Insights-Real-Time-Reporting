@@ -138,5 +138,9 @@ def predict():
                 st.info("👉Now, you can go to '📖 Explain' page or 📑 Generate Report page for further actions for this customer from the Navigation bar.")
                 st.write("")
 
-
+                
+                st.session_state.workflow_stage = 1
+                
+                # Show success message
+                st.success("Prediction complete! You can now explore explanations.")
                
