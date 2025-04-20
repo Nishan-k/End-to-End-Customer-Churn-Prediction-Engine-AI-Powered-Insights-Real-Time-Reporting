@@ -279,7 +279,7 @@ def show_shap_top_features():
     This function takes in the number of features that the user wants to see for the SHAP and shows the table and the chart.
     """
     shap_values = st.session_state.shap_values # session from explain.py
-
+    st.write(shap_values)
     st.subheader("Explore Feature Importance with SHAP")
     n = st.number_input("Number of Features:", min_value=3, max_value=19, step=1)
 

@@ -119,7 +119,7 @@ def predict():
 
                 
       
-                # Sending data to FastAPI for prediction
+        # Sending data to FastAPI for prediction
         if st.button("Predict Churn"):
             res = requests.post(url="https://end-to-end-customer-churn-prediction-8ftp.onrender.com/predict", json=input_features)
             if res.status_code == 200:
