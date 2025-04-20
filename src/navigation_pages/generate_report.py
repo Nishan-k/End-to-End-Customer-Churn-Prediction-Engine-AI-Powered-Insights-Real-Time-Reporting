@@ -92,6 +92,11 @@ def report_generation():
                     mime="application/pdf",
                     key="download_pdf"
                 )
+                st.session_state.shap_value = None
+                st.session_state.predictions = None
+                st.session_state.input_features = None
+                st.session_state.pdf_path = None
+                st.session_state.report_content = None
         else:
             st.error("⚠️ Failed to generate the PDF report. Please try again.")
             st.write("Debug info - pdf_path:", pdf_path)
