@@ -3,7 +3,7 @@
 <h3>The site is live, please feel free to visit:</h3>
 
 *To Live Demo :  [End-to-end customer churn predictoin model](https://end-to-end-customer-churn-prediction-engine-ai-powered.streamlit.app/)*
-![alt text](src/assets/images/churn.jpg)
+![alt text](churn.jpg)
 
 <hr>
 
@@ -47,5 +47,12 @@ Then after authentication and creating a connection, a function <i>load_all_data
 
 ![alt text](image.png)
 
+<h3> Dimension of the dataset. </h3>
 
+![alt text](image1.png)
+
+
+<h3> Checking for NULL values. </h3>
+
+![alt text](image-1.png)
 
