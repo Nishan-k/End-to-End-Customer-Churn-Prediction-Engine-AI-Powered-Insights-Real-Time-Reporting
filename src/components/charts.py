@@ -283,8 +283,12 @@ def show_shap_top_features():
     st.write(input_features)
     st.write("--")
     st.write(shap_values)
+    st.write("--")
+    combined = {k: shap_values[k] + input_features[k] for k in shap_values}
+    st.write(combined)
 
-    
+
+
     st.subheader("Explore Feature Importance with SHAP")
     n = st.number_input("Number of Features:", min_value=3, max_value=19, step=1)
 
