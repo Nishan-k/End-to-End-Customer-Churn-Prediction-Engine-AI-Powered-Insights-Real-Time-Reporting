@@ -12,6 +12,10 @@ except Exception as e:
 
 def navigate_to_predict():
     st.session_state.page_selection = "📊 Predict"
+
+
+def navigate_to_generate_report():
+    st.session_state.page_selection = "📑 Generate Report"
     
 
 def explain():
@@ -82,7 +86,4 @@ def explain():
 
 
 
-    st.info("""
-    👉 Now you can:
-    - Generate a full report on the 'Generate 📑 Report' page
-    """)
+    navigate_to_generate_report()

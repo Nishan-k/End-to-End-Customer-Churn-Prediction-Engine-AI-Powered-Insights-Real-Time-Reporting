@@ -62,8 +62,8 @@ if page == "📖 Explain":
     explain()
 
 
-if page == "📑 Generate Report":
-    report_generation()
+# if page == "📑 Generate Report":
+#     report_generation()
 
 if page == "ℹ️ About":
     about()
