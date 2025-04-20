@@ -72,10 +72,10 @@ def report_generation():
     st.write("--")
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     pdf_filename = f"Customer_churn_report_{timestamp}.pdf"
-    pdf_path = save_report_as_pdf(st.session_state.report_content)
+    pdf_path = save_report_as_pdf(st.session_state.report_content, pdf_filename)
     st.write(pdf_path)
 
-    
+
     if st.button("Generate Report"):
         with st.spinner("Generating report..."):  
             get_report(shap_values=shap_values, 

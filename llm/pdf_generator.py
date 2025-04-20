@@ -3,7 +3,7 @@ import tempfile
 import streamlit as st
 import os
 
-def save_report_as_pdf(report_text):
+def save_report_as_pdf(report_text, pdf_filename):
     try:
         if not report_text:
             st.error("Report content is empty!")
@@ -71,7 +71,7 @@ def save_report_as_pdf(report_text):
 
         
         temp_dir = tempfile.gettempdir()
-        pdf_path = os.path.join(temp_dir, "customer_churn_report.pdf")
+        pdf_path = os.path.join(temp_dir, pdf_filename)
         
         pdf.output(pdf_path)
         
