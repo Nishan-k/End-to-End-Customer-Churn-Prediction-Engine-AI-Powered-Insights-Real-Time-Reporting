@@ -86,4 +86,4 @@ def explain():
 
 
     if st.button("Go to Generate Report Page", on_click=navigate_to_generate_report):
-        st.session_state.navigation_target = False
+        return
