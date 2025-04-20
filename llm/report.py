@@ -138,6 +138,7 @@ def user_prompt(shap_values, predictions, customer_data, prediction_prob,  repor
     """
     A user prompt that tells OpenAI on what and how to respond.
     """
+    
     # Format the prediction in a clearer way
     if isinstance(predictions, dict):
         prediction_text = "1 (Will Churn)" if predictions.get("prediction") == "Churn" else "0 (Will Not Churn)"
