@@ -5,7 +5,7 @@ import os
 
 
 def navigate_to_predict():
-    st.session_state.page_selection = "📊 Predict"
+    st.session_state.navigation_target = "📊 Predict"
 
 
 def report_generation():
