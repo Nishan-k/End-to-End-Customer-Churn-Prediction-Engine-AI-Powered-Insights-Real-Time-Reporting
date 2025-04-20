@@ -3,8 +3,7 @@ import requests
 import joblib
 from src.components.charts import display_customer_health_dashboard, create_clean_shap_dashboard
 import pandas as pd
-
-
+import time
 
     
 
@@ -23,6 +22,15 @@ def predict():
     st.write("")
     
     st.write("")
+    with st.chat_message("assistant"):
+        st.warning("""
+            ⏳ **Please Note:** Initial load may take ~50 seconds  
+            (Our free-tier backend is warming up - like a coffee machine! ☕)  
+            Subsequent requests will be lightning fast ⚡  
+            Thanks for your patience - great things take a moment!  
+            """, icon="⚠️")
+        time.sleep(1)
+        
     
     if 'display_customer_health_dashboard' not in st.session_state:
          st.session_state.display_customer_health_dashboard  = False
@@ -83,16 +91,8 @@ def predict():
             total_charges = st.number_input("Total Charge:", min_value=35.0, max_value=7900.0, step=0.1)
 
         
-                # # Warning section for delay of the backend:
-                # with st.chat_message("assistant"):
-                #     st.warning("""
-                #         **Free-tier delay alert:**  
-                #         First prediction may take ~50s.  
-                #         (Backend is waking up... ☕) 
-                #         Thank you for your patience !! 
-                #     """)
-                #     time.sleep(1)
-
+          
+       
 
                 # Prepare data for API request
             input_features = {
@@ -141,6 +141,4 @@ def predict():
                 
         
                 
-                # Show success message
-                st.success("Prediction complete! You can now explore explanations.")
                

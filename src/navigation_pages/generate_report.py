@@ -64,13 +64,6 @@ def report_generation():
         )
     
     include_recommendations = st.checkbox("Include Actionable Recommendations", value=True)
-    st.write(customer_data)    
-    st.write("--")
-    st.write(predictions)
-    st.write("--")
-    st.write(shap_values)
-    st.write("--")
-   
 
 
     if st.button("Generate Report"):
@@ -85,11 +78,10 @@ def report_generation():
                     )      
             st.session_state.report_content = response
             
-            
+
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         pdf_filename = f"Customer_churn_report_{timestamp}.pdf"
         pdf_path = save_report_as_pdf(report_text=st.session_state.report_content, pdf_filename=pdf_filename)
-        st.write(pdf_path)
         if pdf_path is not None and os.path.exists(pdf_path):
             st.session_state.pdf_path = pdf_path
             with open(pdf_path, "rb") as file:
