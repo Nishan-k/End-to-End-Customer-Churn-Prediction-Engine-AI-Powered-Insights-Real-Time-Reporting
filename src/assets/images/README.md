@@ -143,3 +143,47 @@ First, the correlation has been calculated and plotted as a heatmap for both ori
 
 <h2 id="#spotchecking">5. Spot Checking Algorithms</h2>
 
+**NOTE:** 
+Models that are used below: <br>
+LR:  `LogisticRegression()` <br>
+LDA:  `LinearDiscriminantAnalysis()` <br>
+CART:  `DecisionTreeClassifier()` <br>
+SVM:  `SVC()` <br>
+NB:   `GaussianNB()` <br>
+KNN: `KNeighborsClassifier()` <br>
+AB: `AdaBoostClassifier()` <br>
+GBM: `GradientBoostingClassifier` <br>
+RF: `RandomForestClassifier()` <br>
+ET:  `ExtraTreesClassifier()`
+
+
+<h3> Spot Checking on Original Dataset: </h3>
+So, first we will test out 6 algorithms then use Ensemble Models on the original dataset without scaling data then again we will scaled the data and compare the results:
+
+<b> Train-Test split: </b>
+
+<b> Original data unscaled: </b>
+
+![alt text](image-20.png)
+
+Metrics:
+![alt text](image-17.png)
+
+These `F1-Score` are not so good and `SVM` gave 0 for precision, recall and F1-score,  which shows how sensitive is it to unscaled data.
+
+<b> Original data scaled: </b>
+![alt text](image-18.png)
+
+After the data has been scaled, it went from 0 to 0.5064 for F1-score on scaled data.
+
+Using `Ensemble Models` on the original dataset, as Ensemble model are robust to scalings, I will be using the original dataset directly without scaling them:
+
+![alt text](image-19.png)
+
+<h3> Spot Checking on Blanaced Dataset: </h3>
+
+<b> Train-Test split: </b>
+
+![alt text](image-21.png)
+
+Metrics:
