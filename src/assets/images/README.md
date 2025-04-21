@@ -103,3 +103,22 @@ So, later on the stage, we will be using both the balanced Vs the imbalanced dat
 
 <h2 id="#datapreprocessing">4. Data Preprocessing</h2>
 
+<h3> Encoding: </h3>
+The categorical data doesn't have Ordinal data, and these categorical data also doesn't have too much cardinality, so here, I will be using `One-hot Enoding` to encode these categorical data.
+
+So, a function has been created that takes in a dataframe, separates the categorical and numerical features, performs `OneHotEncoder()` on categorical features, and returns the numerical features and the encoded categorical data as a dataframe.
+
+<b> Encoding both original data(class imabalance dataset) and the balanced dataset:</b>
+
+![alt text](image-12.png)
+
+<h3> Correlation and Multi-Collinearity:</h3>
+
+First, the correlation has been calculated and plotted as a heatmap for both original and balanced dataset:
+
+<b> Correlation Heat Map for Original Dataset: </b>
+
+![alt text](image-13.png)
+
+<b> Correlation Heat Map for Balanced Dataset: </b>
+![alt text](image-14.png)
