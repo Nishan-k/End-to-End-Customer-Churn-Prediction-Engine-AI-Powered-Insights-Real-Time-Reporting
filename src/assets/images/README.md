@@ -30,7 +30,7 @@ The dataset that is used in this project was downloaded from Kaggle and here is 
 <li><a href="#Datasets"><b> Datasets </a></b></li>
 <li><a href="#EDA"><b> Exploratory Data Analysis </a></b></li>
 <li><a href="#datapreprocessing"><b> Data Preprocessing </a></b></li>
-<li><a href="#summary"><b> Summary Till Now </a></b></li>
+<li><a href="#spotchecking"><b> Spot Checking Algorithms </a></b></li>
 <li><a href="#tuning"><b> Model Tuning </a></b></li>
 <li><a href="#finalization"><b> Model Finalization </a></b></li>
 <li><a href="#saveload"><b> Saving & Loading the Model </a></b></li>
@@ -112,7 +112,7 @@ So, a function has been created that takes in a dataframe, separates the categor
 
 ![alt text](image-12.png)
 
-<h3> Correlation and Multi-Collinearity:</h3>
+<h3> Correlation:</h3>
 
 First, the correlation has been calculated and plotted as a heatmap for both original and balanced dataset:
 
@@ -122,3 +122,24 @@ First, the correlation has been calculated and plotted as a heatmap for both ori
 
 <b> Correlation Heat Map for Balanced Dataset: </b>
 ![alt text](image-14.png)
+
+
+<h3> Multi-Collinearity (VIF): </h3>
+
+**NOTE:**  The threshold has been set as 10. VIF above the threshold of 10 would be considered having Multi-collinearity.
+
+
+<b> Multi-collinearity test on original dataset:</b>
+
+
+![alt text](image-15.png)
+
+
+<b> Multi-collinearity test on balanced dataset:</b>
+
+![alt text](image-16.png)
+
+
+
+<h2 id="#spotchecking">5. Spot Checking Algorithms</h2>
+
