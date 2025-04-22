@@ -9,7 +9,7 @@
 
 <h2> Demo: How It Works   </h2>
 
-GIF GOES HERE
+![Demo GIF](https://github.com/Nishan-k/End-to-End-Customer-Churn-Prediction-Engine-AI-Powered-Insights-Real-Time-Reporting/blob/main/src/assets/images/demo.gif?raw=true)
 
 <hr>
 
