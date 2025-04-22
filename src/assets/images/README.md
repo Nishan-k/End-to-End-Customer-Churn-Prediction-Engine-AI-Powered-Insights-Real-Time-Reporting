@@ -34,6 +34,7 @@ The dataset that is used in this project was downloaded from Kaggle and here is 
 <li><a href="#optimization"><b> Hyper-Parameter Optimization </a></b></li>
 <li><a href="#finalization"><b> Model Finalization </a></b></li>
 <li><a href="#saveload"><b> Saving & Loading the Model </a></b></li>
+<li><a href="#demo"><b>GIF Demo: From Input to Insight: How to Use the Project </a></b></li>
 <li><a href="#conclusion"><b> Conclusion </a></b></li>
 </ol>
 
@@ -306,4 +307,20 @@ Finally, we will save the model as a `pickle` file using `Joblib`:
 
 ![alt text](image-44.png)
 
+
+<b> Loading the model and making some predcitions: </b>
+
+![alt text](image-45.png)
+
+<h3> Predicting on the first 3 values: </h3>
+
+![alt text](image-46.png)
+
+
+<h2 id="#demo">9. GIF Demo: From Input to Insight: How to Use the Project</h2>
+
+
+<h2 id="#conclusion">10. Conclusion</h2>
+
+After training, testing, and hyper-parameter optimization, finally we have our final model. This model will have an end-point via `FastAPI` and will be deployed on render to get the prediction for the new data.
 
