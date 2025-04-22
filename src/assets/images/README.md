@@ -47,7 +47,7 @@ This project is an end-to-end Customer Churn Prediction App that integrates a Fa
 The data as downloaded as a CSV file from Kaggle and to mimic the real world scenario, a <b>Customer table</b> has been created and the data has been loaded in that table. For database, <b>PostgreSQL</b> has been used.
 Then after authentication and creating a connection, a function <i>load_all_data()</i> is responsible to load the data from the database, which has been called in a Jupyter Notebook for machine learning tasks.
 
-<h2 id="EDA">3. EDA</h2>
+<h2 id="EDA">3. Exploratory Data Analysis</h2>
 
 <h3> First the data is loaded: </h3>
 
@@ -102,7 +102,8 @@ So, later on the stage, we will be using both the balanced Vs the imbalanced dat
 ![alt text](image-11.png)
 
 
-<h2 id="#datapreprocessing">4. Data Preprocessing</h2>
+<h2 id="datapreprocessing">4. Data Preprocessing</h2>
+
 
 <h3> Encoding: </h3>
 The categorical data doesn't have Ordinal data, and these categorical data also doesn't have too much cardinality, so here, I will be using `One-hot Enoding` to encode these categorical data.
@@ -142,7 +143,7 @@ First, the correlation has been calculated and plotted as a heatmap for both ori
 
 
 
-<h2 id="#spotchecking">5. Spot Checking Algorithms</h2>
+<h2 id="spotchecking">5. Spot Checking Algorithms</h2>
 
 **NOTE:** 
 Models that are used below: <br>
@@ -271,7 +272,7 @@ The best `Hyper-parameters` for the `ExtraTreesClassifier`:
 
 So, Random Forest performs better across all key metrics on the test set. So, the final model will be Random Forest.
 
-<h2 id="#finalization"> 7. Model Finalization </h2>
+<h2 id="finalization"> 7. Model Finalization </h2>
 
 The model has been finalized, i.e. the final model will be `RandomForest` and will be trained with these hyper-parameters:
 
@@ -317,10 +318,10 @@ Finally, we will save the model as a `pickle` file using `Joblib`:
 ![alt text](image-46.png)
 
 
-<h2 id="#demo">9. GIF Demo: From Input to Insight: How to Use the Project</h2>
+<h2 id="demo">9. GIF Demo: From Input to Insight: How to Use the Project</h2>
 
 
-<h2 id="#conclusion">10. Conclusion</h2>
+<h2 id="conclusion">10. Conclusion</h2>
 
 After training, testing, and hyper-parameter optimization, finally we have our final model. This model will have an end-point via `FastAPI` and will be deployed on render to get the prediction for the new data.
 
