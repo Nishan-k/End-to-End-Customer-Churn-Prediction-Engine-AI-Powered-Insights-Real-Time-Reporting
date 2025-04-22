@@ -34,7 +34,7 @@ The dataset that is used in this project was downloaded from Kaggle and here is 
 <li><a href="#optimization"><b> Hyper-Parameter Optimization </a></b></li>
 <li><a href="#finalization"><b> Model Finalization </a></b></li>
 <li><a href="#saveload"><b> Saving & Loading the Model </a></b></li>
-<li><a href="#demo"><b>GIF Demo: From Input to Insight: How to Use the Project </a></b></li>
+<li><a href="#arch"><b>Project Architecture </a></b></li>
 <li><a href="#conclusion"><b> Conclusion </a></b></li>
 </ol>
 
@@ -318,7 +318,7 @@ Finally, we will save the model as a `pickle` file using `Joblib`:
 ![alt text](image-46.png)
 
 
-<h2 id="demo">9. GIF Demo: From Input to Insight: How to Use the Project</h2>
+<h2 id="arch">9. Project Architecture</h2>
 
 
 <h2 id="conclusion">10. Conclusion</h2>
