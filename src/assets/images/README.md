@@ -174,7 +174,7 @@ These `F1-Score` are not so good and `SVM` gave 0 for precision, recall and F1-s
 <b> Original data scaled: </b>
 ![alt text](image-18.png)
 
-After the data has been scaled, it went from 0 to 0.5064 for F1-score on scaled data.
+After the data has been scaled, for `SVM` it went from 0 to 0.5064 for `F1-score` on scaled data.
 
 Using `Ensemble Models` on the original dataset, as Ensemble model are robust to scalings, I will be using the original dataset directly without scaling them:
 
@@ -186,4 +186,29 @@ Using `Ensemble Models` on the original dataset, as Ensemble model are robust to
 
 ![alt text](image-21.png)
 
+<b> Balanced data unscaled: </b>
+
 Metrics:
+![alt text](image-22.png)
+
+<b> Balanced data scaled: </b>
+
+Metrics:
+
+![alt text](image-23.png)
+
+<b> Balanced data Ensemble Models: </b>
+Using `Ensemble Models` on the balanced dataset, as Ensemble model are robust to scalings, I will be using the balanced dataset directly without scaling them:
+
+Metrics:
+![alt text](image-25.png)
+
+Till now, `Ensemble Model` gave the best results, not just from the accuracy perspective, but other metrics like `F1-score, Precision, and Recall`. `Accuracy` is not a good metrics since our data has `Class Imbalance` problem, and in such scenario, other metrics should be considered.
+
+So, till now, we have got two best models from the ensemble section. 
+They are:
+1. `ExtraTreesClassifier` and 
+2. `RandomForest`
+
+Now, I will be moving forward with these two models and optimize the `Hyper-parameter` using `GridSearchCV` and finalize the best model.
+
