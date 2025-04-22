@@ -234,7 +234,7 @@ So, now, I have the best `hyper-parameters` for the `Random Forest` and these ar
 
 ![alt text](image-29.png)
 
-<b> Classification Report on both `Training` and `Testing` : </b>
+<b> Classification Report on `Training and Testing` : </b>
 
 ![alt text](image-30.png)
 
@@ -244,6 +244,66 @@ Now, let's move onto `ExtraTreesClassifier`.
 
 <b> `ExtraTreesClassifier` </b>
 
+The `hyper-parameters` are defined as a dictionary:
 
+![alt text](image-32.png)
+
+![alt text](image-34.png)
+
+![alt text](image-33.png)
+
+The best `Hyper-parameters` for the `ExtraTreesClassifier`:
+
+![alt text](image-35.png)
+
+<b> Re-train the `ExtraTreesClassifier` with the best `hyper-parameters`: </b>
+
+![alt text](image-36.png)
+
+<b> Classification Report on both `Training and Testing` data: </b>
+
+![alt text](image-37.png)
+
+
+
+**Conclusion:**
+
+So, Random Forest performs better across all key metrics on the test set. So, the final model will be Random Forest.
+
+<h2 id="#finalization"> 7. Model Finalization </h2>
+
+The model has been finalized, i.e. the final model will be `RandomForest` and will be trained with these hyper-parameters:
+
+![alt text](image-38.png)
+
+So, the whole data is re-loaded usig the `load_all_data()` script. The `dtypes` will be changed as we did in the earlier phase as below and `customer_id` column will be dropped as we don't need it to build the model:
+
+Load the data:
+![alt text](image-39.png)
+
+Drop the column and change the `dtypes`:
+![alt text](image-40.png)
+
+
+<b> Build the `Pipeline()` to avoid data-leakage: </b>
+
+![alt text](image-41.png)
+
+
+<b> Split the data into `dependend` and `independent` features and fit the model: </b>
+
+![alt text](image-42.png)
+
+
+![alt text](image-43.png)
+
+
+
+
+<h2 id="saveload">8. Saving & Loading the Model</h2>
+
+Finally, we will save the model as a `pickle` file using `Joblib`:
+
+![alt text](image-44.png)
 
 
