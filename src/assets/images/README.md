@@ -7,12 +7,13 @@
 
 *To Live Demo :  <a href="https://end-to-end-customer-churn-prediction-engine-ai-powered.streamlit.app/" target="_blank">End-to-end customer churn prediction model</a>* *(Right-click to open in a new tab)*
 
+<h2> Demo: How It Works   </h2>
 
-![alt text](churn.jpg)
+GIF GOES HERE
 
 <hr>
 
-*Image Source: [Customer Churn](https://www.universalcreativesolutions.com/insights/post/how-to-reduce-customer-churn-rate-ccr)*
+
 
 <hr>
 
