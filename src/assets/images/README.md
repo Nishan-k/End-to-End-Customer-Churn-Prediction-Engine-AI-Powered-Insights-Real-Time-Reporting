@@ -31,7 +31,7 @@ The dataset that is used in this project was downloaded from Kaggle and here is 
 <li><a href="#EDA"><b> Exploratory Data Analysis </a></b></li>
 <li><a href="#datapreprocessing"><b> Data Preprocessing </a></b></li>
 <li><a href="#spotchecking"><b> Spot Checking Algorithms </a></b></li>
-<li><a href="#tuning"><b> Model Tuning </a></b></li>
+<li><a href="#optimization"><b> Hyper-Parameter Optimization </a></b></li>
 <li><a href="#finalization"><b> Model Finalization </a></b></li>
 <li><a href="#saveload"><b> Saving & Loading the Model </a></b></li>
 <li><a href="#conclusion"><b> Conclusion </a></b></li>
@@ -205,10 +205,45 @@ Metrics:
 
 Till now, `Ensemble Model` gave the best results, not just from the accuracy perspective, but other metrics like `F1-score, Precision, and Recall`. `Accuracy` is not a good metrics since our data has `Class Imbalance` problem, and in such scenario, other metrics should be considered.
 
-So, till now, we have got two best models from the ensemble section. 
+So, till now, we have got two best models from the ensemble section and the best result was from the `balanced` dataset. So, I will be moving forward with the balanced dataset and those two models.
+
 They are:
 1. `ExtraTreesClassifier` and 
 2. `RandomForest`
 
 Now, I will be moving forward with these two models and optimize the `Hyper-parameter` using `GridSearchCV` and finalize the best model.
+
+
+<h2 id="optimization">6. Hyper-Parameter Optimization</h2>
+ 
+<b>  `RandomForestClassifier`  </b>
+
+First, the `train-test` split is done:
+
+![alt text](image-26.png)
+
+Then the `hyper-parameters` are defined as a dictionary:
+
+![alt text](image-27.png)
+
+Then the `Random Forest` is trained on these combinations of  `hyper-parameters` and the best ones are saved as below:
+
+![alt text](image-28.png)
+
+So, now, I have the best `hyper-parameters` for the `Random Forest` and these are used to re-train the model and fit on the training dataset:
+
+![alt text](image-29.png)
+
+<b> Classification Report on both `Training` and `Testing` : </b>
+
+![alt text](image-30.png)
+
+<b> If we compare the `accuracy` the training data has `88%` while the testing data has `82%`, there is some overfitting. </b>
+
+Now, let's move onto `ExtraTreesClassifier`.
+
+<b> `ExtraTreesClassifier` </b>
+
+
+
 
