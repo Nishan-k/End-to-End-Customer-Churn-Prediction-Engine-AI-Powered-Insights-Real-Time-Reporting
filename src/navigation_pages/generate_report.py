@@ -23,15 +23,8 @@ def report_generation():
     for stakeholders. The AI will analyze the prediction factors and provide tailored recommendations.
     """)
     
-
-
-    if 'input_features' not in st.session_state:
-        st.warning("⚠️ No prediction data available. Please make a prediction first.")
-        if st.button("Go to Prediction Page", on_click=navigate_to_predict):
-            return
-        return
-    
-    if 'shap_values' not in st.session_state or 'predictions' not in st.session_state:
+   
+    if 'customer_data' not in st.session_state or 'shap_values' not in st.session_state or 'predictions' not in st.session_state:
         st.warning("⚠️ This page requires session from explain page. Please go to the explanation page.")
         if st.button("Go to Prediction Page", on_click=navigate_to_explain):
             return
@@ -40,7 +33,7 @@ def report_generation():
     
     shap_values = st.session_state.shap_values # session from explain.py
     predictions = st.session_state.predictions # session from explain.py
-    customer_data = st.session_state.input_features # session from predict.py
+    customer_data = st.session_state.customer_data # session from predict.py
    
     
    

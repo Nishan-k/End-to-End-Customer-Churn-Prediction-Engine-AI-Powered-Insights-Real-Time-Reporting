@@ -125,7 +125,6 @@ def predict():
             res = requests.post(url="https://end-to-end-customer-churn-prediction-8ftp.onrender.com/predict", json=input_features)
             if res.status_code == 200:
                 display_customer_health_dashboard(res=res, input_features=input_features)
-                st.session_state.customer_data = input_features
                 st.write("")
                 st.write("")
                 st.subheader("Given Input Features")
