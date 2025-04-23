@@ -25,9 +25,9 @@ def predict():
     with st.chat_message("assistant"):
         st.warning("""
             ⏳ **Please Note:** Initial load may take ~50 seconds  
-            (Our free-tier backend is warming up - like a coffee machine! ☕)  
+            (I have used the free-tier of Render for the deployment.)  
             Subsequent requests will be lightning fast ⚡  
-            Thanks for your patience - great things take a moment!  
+            Thanks for your patience  😊  !  
             """, icon="⚠️")
         time.sleep(1)
         

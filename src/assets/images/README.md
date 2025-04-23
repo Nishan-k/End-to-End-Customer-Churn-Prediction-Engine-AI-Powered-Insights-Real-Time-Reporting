@@ -35,7 +35,6 @@ The dataset that is used in this project was downloaded from Kaggle and here is 
 <li><a href="#optimization"><b> Hyper-Parameter Optimization </a></b></li>
 <li><a href="#finalization"><b> Model Finalization </a></b></li>
 <li><a href="#saveload"><b> Saving & Loading the Model </a></b></li>
-<li><a href="#arch"><b>Project Architecture </a></b></li>
 <li><a href="#conclusion"><b> Conclusion </a></b></li>
 </ol>
 
@@ -319,10 +318,19 @@ Finally, we will save the model as a `pickle` file using `Joblib`:
 ![alt text](image-46.png)
 
 
-<h2 id="arch">9. Project Architecture</h2>
+
+<h2 id="conclusion">9. Conclusion</h2>
+
+After training, testing, and hyper-parameter optimization, finally we have our final model. 
+
+<b>Home Page:</b>
+The home page is the landing page which shows the a table and a bar diagram of the current customer churn count in the database, the `Update Graph' will update the plot if new data gets appended to the database. This was the initial working nature when the application was build locally but during deployment the datbase was replaced by the CSV file as just for a single query, hosting the database didn't make sense but once I find the free alternative, the database will be deployed as well.
 
 
-<h2 id="conclusion">10. Conclusion</h2>
+<b> Predict Page: </b>
+The predict page contains the field to input the data from the user. In total, it contains 19 features which were used to train the model. `/preidct` endpoint has been created in FastAPI and has been deployed on render, so once the user inputs the feature and clicks the predict button, the data will be passed to the model `pipeline`, the prediction is returned and a customer dashboard will be shown as below:
 
-After training, testing, and hyper-parameter optimization, finally we have our final model. This model will have an end-point via `FastAPI` and will be deployed on render to get the prediction for the new data.
+![alt text](image-47.png)
+
+and also will list the features that were fed as an input to the prediction model.
 
