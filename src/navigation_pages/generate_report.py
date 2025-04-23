@@ -7,7 +7,10 @@ import time
 
 def navigate_to_predict():
     st.session_state.navigation_target = "📊 Predict"
-   
+
+
+def navigate_to_explain():
+    st.session_state.navigation_target = "📖 Explain"
 
 
 def report_generation():
@@ -22,11 +25,18 @@ def report_generation():
     
 
 
-    if 'shap_values' not in st.session_state or 'predictions' not in st.session_state or 'customer_data' not in st.session_state:
+    if 'customer_data' not in st.session_state:
         st.warning("⚠️ No prediction data available. Please make a prediction first.")
         if st.button("Go to Prediction Page", on_click=navigate_to_predict):
             return
         return
+    
+    if 'shap_values' not in st.session_state or 'predictions' not in st.session_state:
+        st.warning("⚠️ This page requires session from explain page. Please go to the explanation page.")
+        if st.button("Go to Prediction Page", on_click=navigate_to_explain):
+            return
+        return
+
     
     shap_values = st.session_state.shap_values # session from explain.py
     predictions = st.session_state.predictions # session from explain.py
