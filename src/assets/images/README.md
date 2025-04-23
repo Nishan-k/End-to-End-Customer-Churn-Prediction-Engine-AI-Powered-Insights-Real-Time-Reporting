@@ -326,6 +326,9 @@ After training, testing, and hyper-parameter optimization, finally we have our f
 <b>Home Page:</b>
 The home page is the landing page which shows the a table and a bar diagram of the current customer churn count in the database, the `Update Graph' will update the plot if new data gets appended to the database. This was the initial working nature when the application was build locally but during deployment the datbase was replaced by the CSV file as just for a single query, hosting the database didn't make sense but once I find the free alternative, the database will be deployed as well.
 
+![alt text](image-53.png)
+
+![alt text](image-54.png)
 
 <b> Predict Page: </b>
 The predict page contains the field to input the data from the user. In total, it contains 19 features which were used to train the model. `/preidct` endpoint has been created in FastAPI and has been deployed on render, so once the user inputs the feature and clicks the predict button, the data will be passed to the model `pipeline`, the prediction is returned and a customer dashboard will be shown as below:
