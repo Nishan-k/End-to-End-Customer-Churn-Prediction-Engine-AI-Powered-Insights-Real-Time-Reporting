@@ -26,7 +26,7 @@ def report_generation():
    
     if 'customer_data' not in st.session_state or 'shap_values' not in st.session_state or 'predictions' not in st.session_state:
         st.warning("⚠️ This page requires session from explain page. Please go to the explanation page.")
-        if st.button("Go to Prediction Page", on_click=navigate_to_explain):
+        if st.button("Go to Explain Page", on_click=navigate_to_explain):
             return
         return
 
