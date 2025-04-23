@@ -23,13 +23,14 @@ def predict():
     
     st.write("")
     with st.chat_message("assistant"):
+        time.sleep(2)
         st.warning("""
             ⏳ **Please Note:** Initial load may take ~50 seconds  
             (I have used the free-tier of Render for the deployment.)  
             Subsequent requests will be lightning fast ⚡  
             Thanks for your patience  😊  !  
             """, icon="⚠️")
-        time.sleep(1)
+       
         
     
     if 'display_customer_health_dashboard' not in st.session_state:
