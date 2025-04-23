@@ -334,3 +334,28 @@ The predict page contains the field to input the data from the user. In total, i
 
 and also will list the features that were fed as an input to the prediction model.
 
+<b> Explain Page: </b>
+The explain page will display the SHAP (SHapley Additive exPlanations) values where these values provides an insights into how each input feature contributes to a prediction of the model.
+
+It will show an entire data as below:
+![alt text](image-48.png)
+
+But we can also drill down each feature and its values with 3 being the minimum number of features being displayed and 19 being the maximum number of features as 19 features were used in total for the model training:
+
+![alt text](image-49.png)
+
+<b> Generate Report </b>
+And finally we have a generate report section, that takes in the prediction result, SHAP values, the input features used for a particular customer, report type and the target audience and sends the data to the OpenAI via API request and generates a report for us:
+
+![alt text](image-50.png)
+
+and once the report is generated, we can download it as a PDF file too.
+
+Generating the report as a stream:
+
+![alt text](image-51.png)
+
+and an option to download the generated report as a PDF file:
+
+![alt text](image-52.png)
+

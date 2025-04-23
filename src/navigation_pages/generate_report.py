@@ -3,7 +3,7 @@ from llm.report import get_report
 from llm.pdf_generator import save_report_as_pdf
 from datetime import datetime
 import os 
-
+import time
 
 def navigate_to_predict():
     st.session_state.navigation_target = "📊 Predict"
@@ -84,6 +84,7 @@ def report_generation():
         pdf_path = save_report_as_pdf(report_text=st.session_state.report_content, pdf_filename=pdf_filename)
         if pdf_path is not None and os.path.exists(pdf_path):
             st.session_state.pdf_path = pdf_path
+            time.sleep(2)
             with open(pdf_path, "rb") as file:
                 st.download_button(
                     label="📥 Download as PDF",
