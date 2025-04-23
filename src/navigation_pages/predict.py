@@ -128,6 +128,7 @@ def predict():
                 st.write("")
                 st.write("")
                 st.subheader("Given Input Features")
+                st.session_state.input_features = input_features
                 df = pd.DataFrame([st.session_state.input_features]).T.reset_index()
                 df.columns = ['Feature Name', 'Values']
                 st.table(df)                 
