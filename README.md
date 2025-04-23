@@ -17,7 +17,7 @@
 
 <hr>
 
-This is an end-to-end customer churn prediction app with FastAPI at the backend, ExtraTreesClassifier as the prediction model, Streamlit for the frontend, with SHAP explanations, and AI-generated retention reports.
+This is an end-to-end customer churn prediction app with FastAPI at the backend, RandomForestClassifier as the prediction model, Streamlit for the frontend, with SHAP explanations, and AI-generated retention reports.
 
 
 The dataset that is used in this project was downloaded from Kaggle and here is the link to the dataset: 
@@ -40,7 +40,7 @@ The dataset that is used in this project was downloaded from Kaggle and here is 
 
 
 <h2 id="Overview">1. Overview</h2>
-This project is an end-to-end Customer Churn Prediction App that integrates a FastAPI backend with an ExtraTreesClassifier machine learning model. The frontend is built using Streamlit, providing an interactive user interface. The app includes SHAP-based model interpretability to explain predictions and features AI-generated customer retention reports, offering actionable insights for business decision-making.
+This project is an end-to-end Customer Churn Prediction App that integrates a FastAPI backend with an RandomForestClassifier machine learning model. The frontend is built using Streamlit, providing an interactive user interface. The app includes SHAP-based model interpretability to explain predictions and features AI-generated customer retention reports, offering actionable insights for business decision-making.
 
 
 <h2 id="Datasets">2. Dataset</h2>
@@ -51,38 +51,38 @@ Then after authentication and creating a connection, a function <i>load_all_data
 
 <h3> First the data is loaded: </h3>
 
-![alt text](image.png)
+![alt text](src/assets/images/image.png)
 
 <h3> Dimension of the dataset: </h3>
 
-![alt text](image1.png)
+![alt text](src/assets/images/image1.png)
 
 
 <h3> Checking for NULL values: </h3>
 
-![alt text](image-1.png)
+![alt text](src/assets/images/image-1.png)
 
 <h3> Checking the data types: </h3>
 
-![alt text](image-2.png)
+![alt text](src/assets/images/image-2.png)
 
-![alt text](image-3.png)
+![alt text](src/assets/images/image-3.png)
 
 <h3> Data Exploration with Visualization: </h3>
 
-![alt text](image-5.png)
+![alt text](src/assets/images/image-5.png)
 
-![alt text](image-6.png)
+![alt text](src/assets/images/image-6.png)
 
 This is a pure case of class imbalance. As we can see, the classes are imbalanced, the count of Non-Churn is way higher than the count of the Churn.
 
 <h3> Handling Class Imbalance: </h3>
 
-![alt text](image-7.png)
+![alt text](src/assets/images/image-7.png)
 
 Here, the minority class (Class 1) has been oversampled.
 
-![alt text](image-8.png)
+![alt text](src/assets/images/image-8.png)
 
 So, later on the stage, we will be using both the balanced Vs the imbalanced dataset and see on which datasets, the model will generate the best result and accordingly drop one of the dataset.
 
@@ -90,16 +90,16 @@ So, later on the stage, we will be using both the balanced Vs the imbalanced dat
 
 <b> Histogram:</b>
 
-![alt text](image-9.png)
+![alt text](src/assets/images/image-9.png)
 
 <b> Density Plot:</b>
 
-![alt text](image-10.png)
+![alt text](src/assets/images/image-10.png)
 
 
 <b> Box Plot:</b>
 
-![alt text](image-11.png)
+![alt text](src/assets/images/image-11.png)
 
 
 <h2 id="datapreprocessing">4. Data Preprocessing</h2>
@@ -112,7 +112,7 @@ So, a function has been created that takes in a dataframe, separates the categor
 
 <b> Encoding both original data(class imabalance dataset) and the balanced dataset:</b>
 
-![alt text](image-12.png)
+![alt text](src/assets/images/image-12.png)
 
 <h3> Correlation:</h3>
 
@@ -120,10 +120,10 @@ First, the correlation has been calculated and plotted as a heatmap for both ori
 
 <b> Correlation Heat Map for Original Dataset: </b>
 
-![alt text](image-13.png)
+![alt text](src/assets/images/image-13.png)
 
 <b> Correlation Heat Map for Balanced Dataset: </b>
-![alt text](image-14.png)
+![alt text](src/assets/images/image-14.png)
 
 
 <h3> Multi-Collinearity (VIF): </h3>
@@ -134,12 +134,12 @@ First, the correlation has been calculated and plotted as a heatmap for both ori
 <b> Multi-collinearity test on original dataset:</b>
 
 
-![alt text](image-15.png)
+![alt text](src/assets/images/image-15.png)
 
 
 <b> Multi-collinearity test on balanced dataset:</b>
 
-![alt text](image-16.png)
+![alt text](src/assets/images/image-16.png)
 
 
 
@@ -166,44 +166,44 @@ So, first we will test out 6 algorithms then use Ensemble Models on the original
 
 <b> Original data unscaled: </b>
 
-![alt text](image-20.png)
+![alt text](src/assets/images/image-20.png)
 
 Metrics:
-![alt text](image-17.png)
+![alt text](src/assets/images/image-17.png)
 
 These `F1-Score` are not so good and `SVM` gave 0 for precision, recall and F1-score,  which shows how sensitive is it to unscaled data.
 
 <b> Original data scaled: </b>
-![alt text](image-18.png)
+![alt text](src/assets/images/image-18.png)
 
 After the data has been scaled, for `SVM` it went from 0 to 0.5064 for `F1-score` on scaled data.
 
 Using `Ensemble Models` on the original dataset, as Ensemble model are robust to scalings, I will be using the original dataset directly without scaling them:
 
-![alt text](image-19.png)
+![alt text](src/assets/images/image-19.png)
 
 <h3> Spot Checking on Blanaced Dataset: </h3>
 
 <b> Train-Test split: </b>
 
-![alt text](image-21.png)
+![alt text](src/assets/images/image-21.png)
 
 <b> Balanced data unscaled: </b>
 
 Metrics:
-![alt text](image-22.png)
+![alt text](src/assets/images/image-22.png)
 
 <b> Balanced data scaled: </b>
 
 Metrics:
 
-![alt text](image-23.png)
+![alt text](src/assets/images/image-23.png)
 
 <b> Balanced data Ensemble Models: </b>
 Using `Ensemble Models` on the balanced dataset, as Ensemble model are robust to scalings, I will be using the balanced dataset directly without scaling them:
 
 Metrics:
-![alt text](image-25.png)
+![alt text](src/assets/images/image-25.png)
 
 Till now, `Ensemble Model` gave the best results, not just from the accuracy perspective, but other metrics like `F1-score, Precision, and Recall`. `Accuracy` is not a good metrics since our data has `Class Imbalance` problem, and in such scenario, other metrics should be considered.
 
@@ -222,23 +222,23 @@ Now, I will be moving forward with these two models and optimize the `Hyper-para
 
 First, the `train-test` split is done:
 
-![alt text](image-26.png)
+![alt text](src/assets/images/image-26.png)
 
 Then the `hyper-parameters` are defined as a dictionary:
 
-![alt text](image-27.png)
+![alt text](src/assets/images/image-27.png)
 
 Then the `Random Forest` is trained on these combinations of  `hyper-parameters` and the best ones are saved as below:
 
-![alt text](image-28.png)
+![alt text](src/assets/images/image-28.png)
 
 So, now, I have the best `hyper-parameters` for the `Random Forest` and these are used to re-train the model and fit on the training dataset:
 
-![alt text](image-29.png)
+![alt text](src/assets/images/image-29.png)
 
 <b> Classification Report on `Training and Testing` : </b>
 
-![alt text](image-30.png)
+![alt text](src/assets/images/image-30.png)
 
 <b> If we compare the `accuracy` the training data has `88%` while the testing data has `82%`, there is some overfitting. </b>
 
@@ -248,23 +248,23 @@ Now, let's move onto `ExtraTreesClassifier`.
 
 The `hyper-parameters` are defined as a dictionary:
 
-![alt text](image-32.png)
+![alt text](src/assets/images/image-32.png)
 
-![alt text](image-34.png)
+![alt text](src/assets/images/image-34.png)
 
-![alt text](image-33.png)
+![alt text](src/assets/images/image-33.png)
 
 The best `Hyper-parameters` for the `ExtraTreesClassifier`:
 
-![alt text](image-35.png)
+![alt text](src/assets/images/image-35.png)
 
 <b> Re-train the `ExtraTreesClassifier` with the best `hyper-parameters`: </b>
 
-![alt text](image-36.png)
+![alt text](src/assets/images/image-36.png)
 
 <b> Classification Report on both `Training and Testing` data: </b>
 
-![alt text](image-37.png)
+![alt text](src/assets/images/image-37.png)
 
 
 
@@ -276,28 +276,28 @@ So, Random Forest performs better across all key metrics on the test set. So, th
 
 The model has been finalized, i.e. the final model will be `RandomForest` and will be trained with these hyper-parameters:
 
-![alt text](image-38.png)
+![alt text](src/assets/images/image-38.png)
 
 So, the whole data is re-loaded usig the `load_all_data()` script. The `dtypes` will be changed as we did in the earlier phase as below and `customer_id` column will be dropped as we don't need it to build the model:
 
 Load the data:
-![alt text](image-39.png)
+![alt text](src/assets/images/image-39.png)
 
 Drop the column and change the `dtypes`:
-![alt text](image-40.png)
+![alt text](src/assets/images/image-40.png)
 
 
 <b> Build the `Pipeline()` to avoid data-leakage: </b>
 
-![alt text](image-41.png)
+![alt text](src/assets/images/image-41.png)
 
 
 <b> Split the data into `dependend` and `independent` features and fit the model: </b>
 
-![alt text](image-42.png)
+![alt text](src/assets/images/image-42.png)
 
 
-![alt text](image-43.png)
+![alt text](src/assets/images/image-43.png)
 
 
 
@@ -306,16 +306,16 @@ Drop the column and change the `dtypes`:
 
 Finally, we will save the model as a `pickle` file using `Joblib`:
 
-![alt text](image-44.png)
+![alt text](src/assets/images/image-44.png)
 
 
 <b> Loading the model and making some predcitions: </b>
 
-![alt text](image-45.png)
+![alt text](src/assets/images/image-45.png)
 
 <h3> Predicting on the first 3 values: </h3>
 
-![alt text](image-46.png)
+![alt text](src/assets/images/image-46.png)
 
 
 
@@ -326,14 +326,14 @@ After training, testing, and hyper-parameter optimization, finally we have our f
 <b>Home Page:</b>
 The home page is the landing page which shows the a table and a bar diagram of the current customer churn count in the database, the `Update Graph' will update the plot if new data gets appended to the database. This was the initial working nature when the application was build locally but during deployment the datbase was replaced by the CSV file as just for a single query, hosting the database didn't make sense but once I find the free alternative, the database will be deployed as well.
 
-![alt text](image-53.png)
+![alt text](src/assets/images/image-53.png)
 
-![alt text](image-54.png)
+![alt text](src/assets/images/image-54.png)
 
 <b> Predict Page: </b>
 The predict page contains the field to input the data from the user. In total, it contains 19 features which were used to train the model. `/preidct` endpoint has been created in FastAPI and has been deployed on render, so once the user inputs the feature and clicks the predict button, the data will be passed to the model `pipeline`, the prediction is returned and a customer dashboard will be shown as below:
 
-![alt text](image-47.png)
+![alt text](src/assets/images/image-47.png)
 
 and also will list the features that were fed as an input to the prediction model.
 
@@ -341,24 +341,24 @@ and also will list the features that were fed as an input to the prediction mode
 The explain page will display the SHAP (SHapley Additive exPlanations) values where these values provides an insights into how each input feature contributes to a prediction of the model.
 
 It will show an entire data as below:
-![alt text](image-48.png)
+![alt text](src/assets/images/image-48.png)
 
 But we can also drill down each feature and its values with 3 being the minimum number of features being displayed and 19 being the maximum number of features as 19 features were used in total for the model training:
 
-![alt text](image-49.png)
+![alt text](src/assets/images/image-49.png)
 
 <b> Generate Report </b>
 And finally we have a generate report section, that takes in the prediction result, SHAP values, the input features used for a particular customer, report type and the target audience and sends the data to the OpenAI via API request and generates a report for us:
 
-![alt text](image-50.png)
+![alt text](src/assets/images/image-50.png)
 
 and once the report is generated, we can download it as a PDF file too.
 
 Generating the report as a stream:
 
-![alt text](image-51.png)
+![alt text](src/assets/images/image-51.png)
 
 and an option to download the generated report as a PDF file:
 
-![alt text](image-52.png)
+![alt text](src/assets/images/image-52.png)
 
