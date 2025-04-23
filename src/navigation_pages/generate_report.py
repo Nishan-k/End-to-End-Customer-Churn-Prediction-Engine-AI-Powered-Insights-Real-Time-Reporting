@@ -25,7 +25,7 @@ def report_generation():
     
 
 
-    if 'customer_data' not in st.session_state:
+    if 'input_features' not in st.session_state:
         st.warning("⚠️ No prediction data available. Please make a prediction first.")
         if st.button("Go to Prediction Page", on_click=navigate_to_predict):
             return
@@ -40,7 +40,7 @@ def report_generation():
     
     shap_values = st.session_state.shap_values # session from explain.py
     predictions = st.session_state.predictions # session from explain.py
-    customer_data = st.session_state.customer_data # session from predict.py
+    customer_data = st.session_state.input_features # session from predict.py
    
     
    
