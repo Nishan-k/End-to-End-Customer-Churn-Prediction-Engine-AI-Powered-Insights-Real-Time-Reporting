@@ -69,6 +69,7 @@ def explain():
         st.session_state.churn_prob = probability
     else:
         st.success(f"Customer is predicted to stay with {(100-probability):.2f}% probability")
+        st.write(probability)
         st.session_state.non_churn_prob = 100 - probability
     
     st.subheader("Feature Impact Analysis of all the features")
