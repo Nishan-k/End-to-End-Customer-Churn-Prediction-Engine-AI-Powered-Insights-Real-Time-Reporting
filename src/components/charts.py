@@ -72,8 +72,7 @@ def display_customer_health_dashboard(res, input_features):
 
     m3.metric("Customer Life Time Value", f"{ltv:.2f} €", delta="Expected Amount")
     st.write("")
-    st.write(prediction)
-    st.write(prediction_prob)
+    
 
     # Risk visualization
     risk_level = 100 - prediction_prob if prediction == 0 else prediction_prob

@@ -1,7 +1,7 @@
 import streamlit as st 
 import requests
 import joblib
-from src.components.charts import display_customer_health_dashboard, create_clean_shap_dashboard
+from src.components.charts import display_customer_health_dashboard
 import pandas as pd
 import time
 
